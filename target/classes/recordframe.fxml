@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.student.controller.RecordController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="650.0" prefWidth="780.0" style="-fx-background-color: #BACFD4;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.RecordController">
+   <children>
+      <Label layoutX="65.0" layoutY="40.0" text="Register student" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="40.0">
+         <font>
+            <Font name="Rubik Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="120.0" text="Insert Student ID" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="120.0">
+         <font>
+            <Font name="Rubik Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="170.0" text="Student Name" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="170.0">
+         <font>
+            <Font name="Rubik Medium" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="220.0" text="Student Last Name" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="220.0">
+         <font>
+            <Font name="Rubik Medium" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="idField" layoutX="264.0" layoutY="114.0" prefHeight="30.0" prefWidth="230.0" promptText="insert student identity number" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="114.0" />
+      <TextField fx:id="nameField" layoutX="264.0" layoutY="164.0" prefHeight="30.0" prefWidth="230.0" promptText="insert student name" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="164.0" />
+      <TextField fx:id="lastNameField" layoutX="264.0" layoutY="214.0" prefHeight="30.0" prefWidth="230.0" promptText="insert student last name" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="214.0" />
+      <Button fx:id="addStudentBtn" layoutX="234.0" layoutY="279.0" mnemonicParsing="false" onAction="#handle" prefHeight="40.0" prefWidth="106.0" text="Save student" AnchorPane.leftAnchor="234.0" AnchorPane.topAnchor="279.0" />
+      <Label layoutX="48.0" layoutY="495.0" text="set math score" AnchorPane.bottomAnchor="136.6" AnchorPane.rightAnchor="641.6" />
+      <Label layoutX="48.0" layoutY="563.0" text="set english score" AnchorPane.bottomAnchor="68.6" AnchorPane.rightAnchor="629.6" />
+      <Label layoutX="268.0" layoutY="495.0" text="set programming score" AnchorPane.bottomAnchor="136.6" AnchorPane.rightAnchor="368.0" />
+      <Label layoutX="302.0" layoutY="563.0" text="set physics score" AnchorPane.bottomAnchor="68.6" AnchorPane.rightAnchor="374.8" />
+      <ComboBox fx:id="mathScore" editable="true" layoutX="150.0" layoutY="491.0" prefHeight="26.0" prefWidth="75.0" visibleRowCount="15" AnchorPane.bottomAnchor="132.6" AnchorPane.rightAnchor="554.8" />
+      <ComboBox fx:id="englishScore" editable="true" layoutX="160.0" layoutY="559.0" prefHeight="26.0" prefWidth="75.0" AnchorPane.bottomAnchor="64.6" AnchorPane.rightAnchor="544.8" />
+      <Label layoutX="547.0" layoutY="495.0" text="set economics score" AnchorPane.bottomAnchor="136.6" AnchorPane.rightAnchor="109.0" />
+      <ComboBox fx:id="physicsScore" editable="true" layoutX="418.0" layoutY="559.0" prefHeight="26.0" prefWidth="75.0" AnchorPane.bottomAnchor="64.6" AnchorPane.rightAnchor="286.8" />
+      <ComboBox fx:id="codingScore" editable="true" layoutX="425.0" layoutY="491.0" prefHeight="26.0" prefWidth="75.0" AnchorPane.bottomAnchor="132.6" AnchorPane.rightAnchor="279.8" />
+      <ComboBox fx:id="economicsScore" editable="true" layoutX="681.0" layoutY="491.0" prefHeight="26.0" prefWidth="75.0" AnchorPane.bottomAnchor="132.6" AnchorPane.rightAnchor="23.799999999999997" />
+      <Label layoutX="41.0" layoutY="405.0" text="Set student subjects score" AnchorPane.bottomAnchor="215.4" AnchorPane.rightAnchor="426.2">
+         <font>
+            <Font name="Rubik Medium" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="addScoreBtn" layoutX="580.0" layoutY="552.0" mnemonicParsing="false" onAction="#handle" prefHeight="40.0" prefWidth="124.0" text="Set student score" AnchorPane.bottomAnchor="58.0" AnchorPane.rightAnchor="76.0" />
+   </children>
 </AnchorPane>

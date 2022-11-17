@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.OptionsController">
+   <children>
+      <BorderPane fx:id="mainPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <Label prefHeight="80.0" prefWidth="112.0" text="Title App" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Rubik Medium" size="26.0" />
+               </font>
+            </Label>
+         </top>
+         <left>
+            <VBox prefHeight="350.0" prefWidth="160.0" spacing="5.0" style="-fx-background-color: #65A89E;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="option1" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0" text="Record student">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="option2" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0" text="List Students" />
+                  <Button fx:id="option3" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0" text="View Students Data" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin></VBox>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
