@@ -34,7 +34,7 @@ public class RecordController implements Initializable, EventHandler<ActionEvent
     ComboBox<Integer> economicsScore;
     @FXML
     Button addScoreBtn;
-
+    StudentService studentService;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for(int i=0;i<=60;i++){
@@ -44,14 +44,19 @@ public class RecordController implements Initializable, EventHandler<ActionEvent
             codingScore.getItems().add(i);
             economicsScore.getItems().add(i);
         }
+        studentService=new StudentService();
     }
     @Override
     public void handle(ActionEvent e) {
         if(addStudentBtn.equals(e.getSource())){
-            if(idField.getText().isBlank() || nameField.getText().isBlank() || lastNameField.getText().isBlank()){
+            if(idField.getText().isBlank() || nameField.getText().isBlank() || lastNameField.getText().isBlank()){//check if text fields are empty
                 System.out.println("one or all student fields are empty");
             }else {
-                System.out.println(idField.getText()+" "+nameField.getText()+" "+lastNameField.getText());
+                int studentId=Integer.parseInt(idField.getText());
+                String name=nameField.getText();
+                String lastName=lastNameField.getText();
+                System.out.println(studentId+" "+name+" "+lastName);
+                studentService.createStudent(studentId, name, lastName);
             }
         }
         if(addScoreBtn.equals(e.getSource())){
