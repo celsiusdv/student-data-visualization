@@ -13,9 +13,9 @@ import java.util.Set;
 
 /*
  * create connection
- * create statement
+ * create statement - for insert/update/delete PreparedStatement=execute() || Statement=executeUpdate()
  * execute query
- * create resultset if read is necessary (executeQuery()for resulset), for insert/update/delete executeUpdate()/execute()
+ * create resultset if read is necessary (executeQuery()for resulset)
  * */
 public class StudentDAO extends Connector {
 ///////////////////////////////////////////////////////////////////////////
@@ -55,7 +55,7 @@ public class StudentDAO extends Connector {
     public boolean isStudentAlreadyCreated(int student_id){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
-        String sqlQuery="SELECT count(student_id)FROM students WHERE student_id=?";
+        String sqlQuery="SELECT count(student_id)FROM students WHERE student_id=?";//query to count students with the given id
         ResultSet resultSet=null;
         try{
             connection=super.getConnection();

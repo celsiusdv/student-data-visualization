@@ -2,15 +2,15 @@ package edu.student.model;
 
 public class Subject {
     private int studentID;
-    private String math_score;
-    private String english_score;
-    private String programming_score;
-    private String physics_score;
-    private String economics_score;
+    private int math_score;
+    private int english_score;
+    private int programming_score;
+    private int physics_score;
+    private int economics_score;
 
     public Subject(){}
 
-    public Subject(String math_score, String english_score, String programming_score, String physics_score, String economics_score) {
+    public Subject(int math_score, int english_score, int programming_score, int physics_score, int economics_score) {
         this.math_score = math_score;
         this.english_score = english_score;
         this.programming_score = programming_score;
@@ -18,17 +18,17 @@ public class Subject {
         this.economics_score = economics_score;
     }
 
-    public void setMath_score(String math_score) {this.math_score = math_score;}
-    public void setEnglish_score(String english_score) {this.english_score = english_score;}
-    public void setProgramming_score(String programming_score) {this.programming_score = programming_score;}
-    public void setPhysics_score(String physics_score) {this.physics_score = physics_score;}
-    public void setEconomics_score(String economics_score) {this.economics_score = economics_score;}
+    public void setMathScore(int math_score) {this.math_score = math_score;}
+    public void setEnglishScore(int english_score) {this.english_score = english_score;}
+    public void setProgrammingScore(int programming_score) {this.programming_score = programming_score;}
+    public void setPhysicsScore(int physics_score) {this.physics_score = physics_score;}
+    public void setEconomicsScore(int economics_score) {this.economics_score = economics_score;}
     public void setStudentID(int studentID){this.studentID=studentID;}
 
-    public String getMath_score() {return math_score;}
-    public String getEnglish_score() {return english_score;}
-    public String getProgramming_score() {return programming_score;}
-    public String getPhysics_score() {return physics_score;}
-    public String getEconomics_score() {return economics_score;}
+    public int getMathScore() {return math_score;}
+    public int getEnglishScore() {return english_score;}
+    public int getProgrammingScore() {return programming_score;}
+    public int getPhysicsScore() {return physics_score;}
+    public int getEconomicsScore() {return economics_score;}
     public int getStudentID(){return studentID;}
 }
