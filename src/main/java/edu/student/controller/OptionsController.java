@@ -35,6 +35,7 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
         }
         if(option2.equals(event.getSource())){
             System.out.println("show list student frame");
+            showTableFrame();
         }
         if(option3.equals(event.getSource())){
             System.out.println("show data student frame");
@@ -45,6 +46,14 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
         try {
             Parent recordFrame= FXMLLoader.load(getClass().getResource("/recordframe.fxml"));
             mainPane.setCenter(recordFrame);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void showTableFrame(){
+        try {
+            Parent tableFrame= FXMLLoader.load(getClass().getResource("/tableframe.fxml"));
+            mainPane.setCenter(tableFrame);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

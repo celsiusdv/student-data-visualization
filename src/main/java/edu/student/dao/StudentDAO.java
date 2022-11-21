@@ -2,6 +2,7 @@ package edu.student.dao;
 
 import edu.student.database.Connector;
 import edu.student.model.Student;
+import edu.student.model.StudentScore;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-
+//task 1
 /*
  * create connection
  * create statement - for insert/update/delete PreparedStatement=execute() || Statement=executeUpdate()
@@ -49,8 +50,44 @@ public class StudentDAO extends Connector {
         }
         return students;
     }
+/////////////////////////////////////////////////////////////////////////////
+//---------------retrieve students and subject scores from database----------
+/////////////////////////////////////////////////////////////////////////////
+    public Set<StudentScore> retrieveStudentsAndScores(StudentScore studentScore){
+        Set<StudentScore> scores=new HashSet<>();
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        ResultSet resultSet=null;
+        String sqlQuery="SELECT students.student_id, students.first_name, students.last_name, \n" +
+                        "    subjects.math_score, subjects.english_score, subjects.programming_score,\n" +
+                        "    subjects.physics_score, subjects.economics_score\n" +
+                        "    FROM students \n" +
+                        "RIGHT JOIN subjects\n" +
+                        "ON students.student_id = subjects.studentID;";//right join query of students and subjects table
+        try{
+            connection=super.getConnection();
+            preparedStatement=connection.prepareStatement(sqlQuery);
+            resultSet= preparedStatement.executeQuery();
+            while(resultSet.next()){
+                studentScore=new StudentScore(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),
+                                              resultSet.getInt(4),resultSet.getInt(5),resultSet.getInt(6),
+                                              resultSet.getInt(7),resultSet.getInt(8));
+                scores.add(studentScore);//fill list and set later in student service in an ObservableList if is required
+            }
+        }catch (SQLException e){
+            System.out.println("error in method retrieveStudentsAndScores() from StudentDAO.class");
+            e.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+                resultSet.close();
+            } catch (SQLException e) {throw new RuntimeException(e);}
+        }
+        return scores;
+    }
 ////////////////////////////////////////////////////////////////////////////////////
-//-----------------------check if student already exist in database before insert
+//-----------------check if student already exist in database before insert---------
 ////////////////////////////////////////////////////////////////////////////////////
     public boolean isStudentAlreadyCreated(int student_id){
         Connection connection=null;

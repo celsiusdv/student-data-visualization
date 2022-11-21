@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="540.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.TableController">
+   <children>
+      <TableView fx:id="studentTable" layoutX="26.0" layoutY="159.0" prefHeight="283.0" prefWidth="818.0">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="88.79998397827148" text="Student Id" />
+          <TableColumn fx:id="nameColumn" prefWidth="71.199951171875" text="Name" />
+            <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Last Name" />
+            <TableColumn editable="false" minWidth="7.20001220703125" prefWidth="7.20001220703125" sortable="false" style="-fx-background-color: #8CDDA4;" />
+            <TableColumn fx:id="mathColumn" prefWidth="89.60003662109375" text="Math Points" />
+            <TableColumn fx:id="englishColumn" prefWidth="101.5999755859375" text="English Points" />
+            <TableColumn fx:id="programmingColumn" prefWidth="142.4000244140625" text="Programming Points" />
+            <TableColumn fx:id="physicsColumn" prefWidth="104.0" text="Physics Points" />
+            <TableColumn fx:id="economicsColumn" prefWidth="135.19998779296873" text="Economics Points" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

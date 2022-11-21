@@ -6,9 +6,38 @@ import edu.student.model.Subject;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.HashSet;
+import java.util.Set;
+//task 2
 public class SubjectDAO extends Connector {
+///////////////////////////////////////////////////////////////////////////
+//----------------------------retrieve scores from database--------------
+///////////////////////////////////////////////////////////////////////////
+    public Set<Subject> retrieveScores(Subject subject){
+        Set<Subject> subjectScores=new HashSet<>();
+
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        String sqlQuery="SELECT * FROM subjects";
+        ResultSet resultSet=null;
+        try{
+            connection=super.getConnection();
+            preparedStatement=connection.prepareStatement(sqlQuery);
+            resultSet= preparedStatement.executeQuery();
+            while (resultSet.next()){
+                subject=new Subject(resultSet.getInt(2),resultSet.getInt(3),resultSet.getInt(4),
+                                    resultSet.getInt(5),resultSet.getInt(6));
+                subjectScores.add(subject);//fill list and set later in student service on ObservableList if is required
+            }
+        }catch (SQLException e){
+            System.out.println("error in method retrieveScores() from SubjectDAO.class");
+            e.printStackTrace();
+        }
+        return subjectScores;
+    }
+
 /////////////////////////////////////////////////////////////////////////////
 //-----------------------insert/update scores to database------------------
 /////////////////////////////////////////////////////////////////////////////
