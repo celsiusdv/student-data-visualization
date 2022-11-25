@@ -5,7 +5,8 @@ import edu.student.model.Student;
 import edu.student.model.StudentScore;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import java.util.Iterator;
 //task 1
 public class StudentService {
@@ -31,9 +32,9 @@ public class StudentService {
         }
         return scoreList;
     }
+
     public void createStudent(int studentId, String studentName, String studentLastName){
         if(studentDAO.isStudentAlreadyCreated(studentId)==false){
-
             student.setStudentId(studentId);
             student.setFirstName(studentName);
             student.setLastName(studentLastName);
@@ -41,7 +42,46 @@ public class StudentService {
             if(studentDAO.isStudentCreated(student)==true){
                 System.out.println("student created succesfully, validation output from method" +
                         " createStudent() in StudentService.class");
+                student=null;
             }
         }else System.out.println("student already exist");
+    }
+//---------service to update student id in TableController
+    public void updateStudentId(CellEditEvent<StudentScore, Integer> event){
+        StudentScore studentTable=event.getRowValue();//getting old value from idColumn
+        Integer currentStudentId=studentTable.getStudentId();//get value to put in sql "WHERE student_id=?" clause
+
+        studentTable.setStudentId(event.getNewValue());//setting new value in the Id Column
+
+        student.setStudentId(studentTable.getStudentId());
+
+        if(studentDAO.isStudentIdUpdated(student,currentStudentId)==true){
+            System.out.println("id updated succesfully, output from StudentService.class in method UpdatestudentId");
+        }else System.out.println("id update failed");
+    }
+
+//---------service to update student name in TableController
+    public void updateStudentName(CellEditEvent<StudentScore, String> event){
+        studentScore=event.getTableView().getSelectionModel().getSelectedItem();//get value to put in sql "WHERE student_id=?" clause
+        student.setStudentId(studentScore.getStudentId());// get value from TableView<StudentScore> and set to student model
+        student.setFirstName(event.getNewValue());
+
+        if(studentDAO.isStudentUpdated(student)==true){
+            studentScore.setFirstName(student.getFirstName());//setting new value to TableView Name column
+/*------setting student first_name variable to null to avoid conflicts in StudentDao.class in isStudentUpdated() after the validation----*/
+            student.setFirstName(null);
+            System.out.println("student updated");
+        }else System.out.println("failed to update student credentials");
+    }
+    public void updateStudentLastName(CellEditEvent<StudentScore, String> event){
+        studentScore=event.getTableView().getSelectionModel().getSelectedItem();
+        student.setStudentId(studentScore.getStudentId());
+        student.setLastName(event.getNewValue());
+
+        if(studentDAO.isStudentUpdated(student)==true){
+            studentScore.setLastName(student.getLastName());
+            student.setLastName(null);
+            System.out.println("student updated");
+        }else System.out.println("failed to update student credentials");
     }
 }

@@ -41,7 +41,7 @@ public class SubjectDAO extends Connector {
 /////////////////////////////////////////////////////////////////////////////
 //-----------------------insert/update scores to database------------------
 /////////////////////////////////////////////////////////////////////////////
-    public boolean isEveryScoreAdded(Subject subject, Student student){
+    public boolean isEveryScoreUpdated(Subject subject, Student student){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         String sqlQuery="UPDATE subjects SET" +
@@ -67,6 +67,64 @@ public class SubjectDAO extends Connector {
                 connection.close();
                 preparedStatement.close();
             } catch (SQLException e) {throw new RuntimeException(e);}
+        }
+    }
+///////////////////////////////////////////////////////////////////////////////
+////-----------------------update  to database------------------
+///////////////////////////////////////////////////////////////////////////////
+    public boolean isScoreFromTableUpdated(Subject subject){
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        String updateMathScore="UPDATE subjects SET math_score=? WHERE studentID=?";
+        String updateEnglishScore="UPDATE subjects SET english_score=? WHERE studentID=?";
+        String updateProgrScore="UPDATE subjects SET programming_score=? WHERE studentID=?";
+        String updatePhysicsScore="UPDATE subjects SET physics_score=? WHERE studentID=?";
+        String updateEconomicsScore="UPDATE subjects SET economics_score=? WHERE studentID=?";
+        try{
+            connection=super.getConnection();
+            if(subject.getMathScore() > 0){
+                preparedStatement=connection.prepareStatement(updateMathScore);
+                preparedStatement.setInt(1,subject.getMathScore());
+                preparedStatement.setInt(2,subject.getStudentID());
+                preparedStatement.execute();
+            }
+            if(subject.getEnglishScore() > 0){
+                preparedStatement=connection.prepareStatement(updateEnglishScore);
+                preparedStatement.setInt(1,subject.getEnglishScore());
+                preparedStatement.setInt(2,subject.getStudentID());
+                preparedStatement.execute();
+            }
+            if(subject.getProgrammingScore() > 0){
+                preparedStatement=connection.prepareStatement(updateProgrScore);
+                preparedStatement.setInt(1,subject.getProgrammingScore());
+                preparedStatement.setInt(2,subject.getStudentID());
+                preparedStatement.execute();
+            }
+            if(subject.getPhysicsScore() > 0){
+                preparedStatement=connection.prepareStatement(updatePhysicsScore);
+                preparedStatement.setInt(1,subject.getPhysicsScore());
+                preparedStatement.setInt(2,subject.getStudentID());
+                preparedStatement.execute();
+            }
+            if(subject.getEconomicsScore() > 0){
+                preparedStatement=connection.prepareStatement(updateEconomicsScore);
+                preparedStatement.setInt(1,subject.getEconomicsScore());
+                preparedStatement.setInt(2,subject.getStudentID());
+                preparedStatement.execute();
+            }
+
+            return true;
+        }catch (SQLException e){
+            System.out.println("error in method isScoreFromTableUpdated() from SubjectDAO.class");
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }

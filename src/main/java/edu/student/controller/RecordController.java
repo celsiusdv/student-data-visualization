@@ -1,7 +1,5 @@
 package edu.student.controller;
 
-import edu.student.database.Connector;
-import edu.student.model.Student;
 import edu.student.services.StudentService;
 import edu.student.services.SubjectService;
 import javafx.event.ActionEvent;
@@ -75,7 +73,7 @@ public class RecordController implements Initializable, EventHandler<ActionEvent
             Integer economics=Integer.parseInt(String.valueOf(economicsScore.getValue()));
             int studentId=Integer.parseInt(idField.getText());
             System.out.println(" math:"+math+ " english: "+english+" coding: "+coding+ " physics: "+physics+ " economics: "+economics+" id:"+studentId);
-            subjectService.addScores(math,english,coding,physics,economics,studentId);
+            subjectService.updateScores(math,english,coding,physics,economics,studentId);
         }
     }
 }

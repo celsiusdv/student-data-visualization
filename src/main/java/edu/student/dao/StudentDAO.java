@@ -51,7 +51,7 @@ public class StudentDAO extends Connector {
         return students;
     }
 /////////////////////////////////////////////////////////////////////////////
-//---------------retrieve students and subject scores from database----------
+//----retrieve students and subject scores from database with a join query---
 /////////////////////////////////////////////////////////////////////////////
     public Set<StudentScore> retrieveStudentsAndScores(StudentScore studentScore){
         Set<StudentScore> scores=new HashSet<>();
@@ -92,11 +92,11 @@ public class StudentDAO extends Connector {
     public boolean isStudentAlreadyCreated(int student_id){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
-        String sqlQuery="SELECT count(student_id)FROM students WHERE student_id=?";//query to count students with the given id
+        String countQuery="SELECT count(student_id)FROM students WHERE student_id=?";//query to count students with the given id
         ResultSet resultSet=null;
         try{
             connection=super.getConnection();
-            preparedStatement=connection.prepareStatement(sqlQuery);
+            preparedStatement=connection.prepareStatement(countQuery);
             preparedStatement.setInt(1,student_id);//---> parameter: WHERE student_id=?
             resultSet=preparedStatement.executeQuery();
 /*-----------iterate the resultset and count the amount of student_id's------*/
@@ -124,11 +124,11 @@ public class StudentDAO extends Connector {
     public boolean isStudentCreated(Student student){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
-        String sqlQuery="INSERT INTO students (student_id, first_name, last_name)" +
+        String insertQuery="INSERT INTO students (student_id, first_name, last_name)" +
                         " values(?,?,?)";
         try{
             connection=super.getConnection();
-            preparedStatement=connection.prepareStatement(sqlQuery);
+            preparedStatement=connection.prepareStatement(insertQuery);
             preparedStatement.setInt(1,student.getStudentId());
             preparedStatement.setString(2,student.getFirstName());
             preparedStatement.setString(3,student.getLastName());
@@ -136,6 +136,65 @@ public class StudentDAO extends Connector {
             return true;
         }catch (SQLException e){
             System.out.println("error in method isStudentCreated() from StudentDAO.class");
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (SQLException e) {throw new RuntimeException(e);}
+        }
+    }
+/////////////////////////////////////////////////////////////////////////////
+//-----------------------update student id-----------------------------------
+/////////////////////////////////////////////////////////////////////////////
+    public boolean isStudentIdUpdated(Student student, Integer student_id){
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        String updateQuery="UPDATE students SET student_id=? WHERE student_id=?";
+        try{
+            connection=super.getConnection();
+            preparedStatement=connection.prepareStatement(updateQuery);
+            preparedStatement.setInt(1,student.getStudentId());
+            preparedStatement.setInt(2,student_id);
+            preparedStatement.execute();
+            return true;
+        }catch (SQLException e){
+            System.out.println("error in method isStudentIdUpdated() from StudentDAO.class");
+            e.printStackTrace();
+            return false;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (SQLException e) {throw new RuntimeException(e);}
+        }
+    }
+/////////////////////////////////////////////////////////////////////////////
+//-----------------------update student credentials--------------------------
+/////////////////////////////////////////////////////////////////////////////
+    public boolean isStudentUpdated(Student student){
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        String updateName="UPDATE students SET first_name=? WHERE student_id=?";
+        String updateLastName="UPDATE students SET last_name=? WHERE student_id=?";
+        try{
+            connection=super.getConnection();
+            if(student.getFirstName()!=null){
+                preparedStatement=connection.prepareStatement(updateName);
+                preparedStatement.setString(1,student.getFirstName());
+                preparedStatement.setInt(2,student.getStudentId());
+                preparedStatement.execute();
+            }
+            if(student.getLastName() !=null){
+                preparedStatement=connection.prepareStatement(updateLastName);
+                preparedStatement.setString(1,student.getLastName());
+                preparedStatement.setInt(2,student.getStudentId());
+                preparedStatement.execute();
+            }
+            return true;
+        }catch (SQLException e){
+            System.out.println("error in method isStudentUpdated() from StudentDAO.class");
             e.printStackTrace();
             return false;
         }finally {
