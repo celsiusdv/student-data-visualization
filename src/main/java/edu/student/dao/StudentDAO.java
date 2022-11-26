@@ -27,11 +27,11 @@ public class StudentDAO extends Connector {
 
         Connection connection=null;
         PreparedStatement preparedStatement=null;
-        String sqlQuery="SELECT * FROM students";
+        String readAll="SELECT * FROM students";
         ResultSet resultSet=null;
         try {
             connection=super.getConnection();
-            preparedStatement=connection.prepareStatement(sqlQuery);
+            preparedStatement=connection.prepareStatement(readAll);
             resultSet= preparedStatement.executeQuery();
 
             while (resultSet.next() == true){
@@ -58,7 +58,7 @@ public class StudentDAO extends Connector {
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
-        String sqlQuery="SELECT students.student_id, students.first_name, students.last_name, \n" +
+        String joinQuery="SELECT students.student_id, students.first_name, students.last_name, \n" +
                         "    subjects.math_score, subjects.english_score, subjects.programming_score,\n" +
                         "    subjects.physics_score, subjects.economics_score\n" +
                         "    FROM students \n" +
@@ -66,7 +66,7 @@ public class StudentDAO extends Connector {
                         "ON students.student_id = subjects.studentID;";//right join query of students and subjects table
         try{
             connection=super.getConnection();
-            preparedStatement=connection.prepareStatement(sqlQuery);
+            preparedStatement=connection.prepareStatement(joinQuery);
             resultSet= preparedStatement.executeQuery();
             while(resultSet.next()){
                 studentScore=new StudentScore(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3),
@@ -202,6 +202,25 @@ public class StudentDAO extends Connector {
                 connection.close();
                 preparedStatement.close();
             } catch (SQLException e) {throw new RuntimeException(e);}
+        }
+    }
+/////////////////////////////////////////////////////////////////////////////
+//-----------------------delete student ------------------------------------
+/////////////////////////////////////////////////////////////////////////////
+    public boolean deleteStudent(Student student){
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        String deleteQuery="DELETE FROM students WHERE student_id=?";
+        try{
+            connection=super.getConnection();
+            preparedStatement=connection.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1,student.getStudentId());
+            preparedStatement.execute();
+            return true;
+        }catch (SQLException e){
+            System.out.println("error in deleteStudent method from StudentDAO.class");
+            e.printStackTrace();
+            return false;
         }
     }
 }

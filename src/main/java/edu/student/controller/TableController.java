@@ -1,19 +1,15 @@
 package edu.student.controller;
 
-import edu.student.model.Student;
 import edu.student.model.StudentScore;
-import edu.student.model.Subject;
 import edu.student.services.StudentService;
 import edu.student.services.SubjectService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.util.Callback;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
@@ -38,8 +34,12 @@ public class TableController implements Initializable {
     TableColumn<StudentScore,Integer>physicsColumn;
     @FXML
     TableColumn<StudentScore,Integer>economicsColumn;
+    @FXML
+    TableColumn<StudentScore, Void>deleteColumn;
+
     StudentService studentService;
     SubjectService subjectService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         studentService=new StudentService();
@@ -77,7 +77,29 @@ public class TableController implements Initializable {
         economicsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         economicsColumn.setOnEditCommit(event ->subjectService.updateEconomicsScore(event));
 
+        deleteColumn.setCellFactory(new Callback<TableColumn<StudentScore,Void>, TableCell<StudentScore,Void>>() {
+            @Override
+            public TableCell<StudentScore,Void> call(TableColumn<StudentScore, Void> param) {
+                final TableCell<StudentScore, Void> cell = new TableCell<StudentScore, Void>() {
 
+                    private final Button btn = new Button("delete");{
+                        btn.setOnAction((ActionEvent event) -> {
+                            StudentScore studentScore=studentTable.getItems().get(getIndex());
+                            if(studentService.deleteStudent(studentScore)==true){
+                                studentTable.getItems().remove(studentScore);
+                            }
+                        });
+                    }
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) setGraphic(null);
+                        else setGraphic(btn);
+                    }
+                };
+                return cell;
+            }
+        });
         studentTable.setItems(studentService.showScoresAndStudentOnTable());
     }
 }

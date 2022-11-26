@@ -5,23 +5,22 @@ import edu.student.model.Student;
 import edu.student.model.StudentScore;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import java.util.Iterator;
 //task 1
 public class StudentService {
     Student student;
-    StudentScore studentScore;
+    StudentScore studentFromTable;
     StudentDAO studentDAO;
 
     public StudentService(){
         student=new Student();
-        studentScore= new StudentScore();
+        studentFromTable = new StudentScore();
         studentDAO=new StudentDAO();
     }
 
     public ObservableList<StudentScore> showScoresAndStudentOnTable(){
-        Iterator<StudentScore> studentIterator=studentDAO.retrieveStudentsAndScores(studentScore).iterator();
+        Iterator<StudentScore> studentIterator=studentDAO.retrieveStudentsAndScores(studentFromTable).iterator();
         ObservableList<StudentScore> scoreList= FXCollections.observableArrayList();
 
         while(studentIterator.hasNext()){
@@ -46,6 +45,7 @@ public class StudentService {
             }
         }else System.out.println("student already exist");
     }
+
 //---------service to update student id in TableController
     public void updateStudentId(CellEditEvent<StudentScore, Integer> event){
         StudentScore studentTable=event.getRowValue();//getting old value from idColumn
@@ -62,26 +62,38 @@ public class StudentService {
 
 //---------service to update student name in TableController
     public void updateStudentName(CellEditEvent<StudentScore, String> event){
-        studentScore=event.getTableView().getSelectionModel().getSelectedItem();//get value to put in sql "WHERE student_id=?" clause
-        student.setStudentId(studentScore.getStudentId());// get value from TableView<StudentScore> and set to student model
+        studentFromTable =event.getTableView().getSelectionModel().getSelectedItem();//get value to put in sql "WHERE student_id=?" clause
+        student.setStudentId(studentFromTable.getStudentId());// get value from TableView<StudentScore> and set to student model
         student.setFirstName(event.getNewValue());
 
         if(studentDAO.isStudentUpdated(student)==true){
-            studentScore.setFirstName(student.getFirstName());//setting new value to TableView Name column
+            studentFromTable.setFirstName(student.getFirstName());//setting new value to TableView Name column
 /*------setting student first_name variable to null to avoid conflicts in StudentDao.class in isStudentUpdated() after the validation----*/
             student.setFirstName(null);
             System.out.println("student updated");
         }else System.out.println("failed to update student credentials");
     }
+
+//---------service to update student name in TableController
     public void updateStudentLastName(CellEditEvent<StudentScore, String> event){
-        studentScore=event.getTableView().getSelectionModel().getSelectedItem();
-        student.setStudentId(studentScore.getStudentId());
+        studentFromTable =event.getTableView().getSelectionModel().getSelectedItem();
+        student.setStudentId(studentFromTable.getStudentId());
         student.setLastName(event.getNewValue());
 
         if(studentDAO.isStudentUpdated(student)==true){
-            studentScore.setLastName(student.getLastName());
+            studentFromTable.setLastName(student.getLastName());
             student.setLastName(null);
             System.out.println("student updated");
         }else System.out.println("failed to update student credentials");
+    }
+
+    public boolean deleteStudent(StudentScore studentScore){
+        this.studentFromTable =studentScore;
+        student.setStudentId(this.studentFromTable.getStudentId());
+        if(studentDAO.deleteStudent(student)==true){
+            System.out.println("student deleted sucessfully");
+            System.out.println("name: "+this.studentFromTable.getFirstName()+" id: "+this.studentFromTable.getStudentId());
+            return true;
+        }else return false;
     }
 }

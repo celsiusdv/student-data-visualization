@@ -35,7 +35,7 @@ public class SubjectService {
                 "addScores() in SubjectService.class");
     }
 
-    public void updateMathScore(TableColumn.CellEditEvent<StudentScore, Integer> event){
+    public void updateMathScore(CellEditEvent<StudentScore, Integer> event){
         studentScore=event.getTableView().getSelectionModel().getSelectedItem();
         subject.setStudentID(studentScore.getStudentId());
         subject.setMathScore(event.getNewValue());
@@ -93,5 +93,4 @@ public class SubjectService {
             subject.setEconomicsScore(0);//reset subject variable to avoid conflict in SubjectDAO.class
         }
     }
-
 }

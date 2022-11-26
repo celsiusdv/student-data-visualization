@@ -1,5 +1,8 @@
 package edu.student.model;
 
+
+import javafx.scene.control.Button;
+
 public class StudentScore {
     private int student_id;
     private String first_name;
@@ -46,6 +49,7 @@ public class StudentScore {
     public void setProgrammingScore(int programmingScore) {this.programming_score = programmingScore;}
     public void setPhysicsScore(int physicsScore) {this.physics_score = physicsScore;}
     public void setEconomicsScore(int economicsScore) {this.economics_score = economicsScore;}
+
 
     public int getStudentId() {return student_id;}
     public String getFirstName() {return first_name;}
