@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="730.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
+   <children>
+      <Label layoutX="48.0" layoutY="125.0" text="chart panel" />
+      <Button fx:id="backButton" layoutX="48.0" layoutY="37.0" mnemonicParsing="false" onAction="#handle" text="back to menu" />
+   </children>
+</AnchorPane>

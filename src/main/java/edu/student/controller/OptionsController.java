@@ -5,9 +5,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +26,7 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
     @FXML
     Button option3;
 
+    public OptionsController(){}
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.showRecordFrame();
@@ -30,15 +34,13 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
     @Override
     public void handle(ActionEvent event) {
         if(option1.equals(event.getSource())){
-            System.out.println("show record frame");
             showRecordFrame();
         }
         if(option2.equals(event.getSource())){
-            System.out.println("show list student frame");
             showTableFrame();
         }
         if(option3.equals(event.getSource())){
-            System.out.println("show data student frame");
+            showChartsFrame(event);
         }
     }
 //----------------methods to handle fxml files
@@ -58,4 +60,17 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
             throw new RuntimeException(e);
         }
     }
+    public void showChartsFrame(ActionEvent event){
+        try {
+            Parent chartsFrame= FXMLLoader.load(getClass().getResource("/chartsframe.fxml"));
+            Scene scene=new Scene(chartsFrame);
+            Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Student Data");
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -35,11 +35,12 @@ public class TableController implements Initializable {
     @FXML
     TableColumn<StudentScore,Integer>economicsColumn;
     @FXML
+    TableColumn<StudentScore, Void>dataColumn;
+    @FXML
     TableColumn<StudentScore, Void>deleteColumn;
 
     StudentService studentService;
     SubjectService subjectService;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         studentService=new StudentService();
@@ -77,14 +78,34 @@ public class TableController implements Initializable {
         economicsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         economicsColumn.setOnEditCommit(event ->subjectService.updateEconomicsScore(event));
 
+////////////----------------------columns with buttons---------------------------
+        dataColumn.setCellFactory(new Callback<TableColumn<StudentScore, Void>, TableCell<StudentScore, Void>>() {
+            @Override
+            public TableCell<StudentScore, Void> call(TableColumn<StudentScore, Void> param) {
+                final TableCell<StudentScore, Void> cell = new TableCell<StudentScore, Void>() {
+                    private final Button btn = new Button("show charts");{
+                        btn.setOnAction((ActionEvent event) -> {
+                            new OptionsController().showChartsFrame(event);
+                        });
+                    }
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) setGraphic(null);
+                        else setGraphic(btn);
+                    }
+                };
+                return cell;
+            }
+        });
+
         deleteColumn.setCellFactory(new Callback<TableColumn<StudentScore,Void>, TableCell<StudentScore,Void>>() {
             @Override
             public TableCell<StudentScore,Void> call(TableColumn<StudentScore, Void> param) {
                 final TableCell<StudentScore, Void> cell = new TableCell<StudentScore, Void>() {
-
                     private final Button btn = new Button("delete");{
                         btn.setOnAction((ActionEvent event) -> {
-                            StudentScore studentScore=studentTable.getItems().get(getIndex());
+                            StudentScore studentScore=studentTable.getItems().get(getIndex());//get all items from the selected row to get the student id
                             if(studentService.deleteStudent(studentScore)==true){
                                 studentTable.getItems().remove(studentScore);
                             }
@@ -100,6 +121,7 @@ public class TableController implements Initializable {
                 return cell;
             }
         });
+
         studentTable.setItems(studentService.showScoresAndStudentOnTable());
     }
 }
