@@ -24,7 +24,6 @@ public class StudentDAO extends Connector {
 ///////////////////////////////////////////////////////////////////////////
     public Set<Student> retrieveStudents(Student student){
         Set<Student> students=new HashSet<>();
-
         Connection connection=null;
         PreparedStatement preparedStatement=null;
         String readAll="SELECT * FROM students";

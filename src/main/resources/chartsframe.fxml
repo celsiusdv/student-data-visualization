@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="730.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
    <children>
-      <Label layoutX="48.0" layoutY="125.0" text="chart panel" />
+      <Label layoutX="320.0" layoutY="39.0" text="subjects attendances per month">
+         <font>
+            <Font name="Inconsolata Bold" size="20.0" />
+         </font>
+      </Label>
       <Button fx:id="backButton" layoutX="48.0" layoutY="37.0" mnemonicParsing="false" onAction="#handle" text="back to menu" />
+      <LineChart fx:id="mathChart" layoutX="14.0" layoutY="138.0" prefHeight="200.0" prefWidth="390.0">
+        <xAxis>
+          <CategoryAxis fx:id="mathCategoryAxis" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="mathAttendanceAxis" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <Label layoutX="48.0" layoutY="89.0" text="search student data by id" />
+      <TextField fx:id="idField" layoutX="215.0" layoutY="85.0" prefHeight="26.0" prefWidth="75.0" />
+      <Button fx:id="searchBtn" layoutX="290.0" layoutY="85.0" mnemonicParsing="false" onAction="#handle" text="search" />
    </children>
 </AnchorPane>

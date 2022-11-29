@@ -1,6 +1,7 @@
 package edu.student.controller;
 
 import edu.student.model.StudentScore;
+import edu.student.services.AttendanceService;
 import edu.student.services.StudentService;
 import edu.student.services.SubjectService;
 import javafx.event.ActionEvent;
@@ -38,12 +39,14 @@ public class TableController implements Initializable {
     TableColumn<StudentScore, Void>dataColumn;
     @FXML
     TableColumn<StudentScore, Void>deleteColumn;
-
+    ChartsController chartsController;
     StudentService studentService;
     SubjectService subjectService;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //the methods from this service is used in the first three columns and in the delete column
         studentService=new StudentService();
+        //the methods from this service is for filling the subject columns
         subjectService=new SubjectService();
 
         idColumn.setCellValueFactory(new PropertyValueFactory<StudentScore,Integer>("studentId"));
@@ -78,13 +81,15 @@ public class TableController implements Initializable {
         economicsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         economicsColumn.setOnEditCommit(event ->subjectService.updateEconomicsScore(event));
 
-////////////----------------------columns with buttons---------------------------
+////////////////////////////////////columns with buttons//////////////////////////////////////////////////////////
         dataColumn.setCellFactory(new Callback<TableColumn<StudentScore, Void>, TableCell<StudentScore, Void>>() {
             @Override
             public TableCell<StudentScore, Void> call(TableColumn<StudentScore, Void> param) {
                 final TableCell<StudentScore, Void> cell = new TableCell<StudentScore, Void>() {
                     private final Button btn = new Button("show charts");{
                         btn.setOnAction((ActionEvent event) -> {
+                            StudentScore studentScore=studentTable.getItems().get(getIndex());
+                            System.out.println(studentScore.getStudentId());
                             new OptionsController().showChartsFrame(event);
                         });
                     }
@@ -105,7 +110,8 @@ public class TableController implements Initializable {
                 final TableCell<StudentScore, Void> cell = new TableCell<StudentScore, Void>() {
                     private final Button btn = new Button("delete");{
                         btn.setOnAction((ActionEvent event) -> {
-                            StudentScore studentScore=studentTable.getItems().get(getIndex());//get all items from the selected row to get the student id
+                            //get all items from the selected row to get the student id
+                            StudentScore studentScore=studentTable.getItems().get(getIndex());
                             if(studentService.deleteStudent(studentScore)==true){
                                 studentTable.getItems().remove(studentScore);
                             }
