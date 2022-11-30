@@ -28,13 +28,14 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     @FXML Button backButton;
     @FXML Button searchBtn;
     @FXML TextField idField;
-    @FXML LineChart<String,Integer> mathChart;//container of months and values
+    @FXML LineChart<String,Number> mathChart;//container of months and values
     @FXML CategoryAxis mathCategoryAxis;//horizontal axis for months names
     @FXML NumberAxis mathAttendanceAxis;//vertical axis for attendances values
+    XYChart.Series<String, Number> mathSeries;//collection of values(attendances, months) to set in the chart
     String[] months;
-    XYChart.Series<String, Integer> mathSeries;//collection of values(attendances, months) to set in the chart
 
     AttendanceService attendanceService;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         months= new String[]{"mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov"};
@@ -80,9 +81,9 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
 
     public void showMainMenuFrame(ActionEvent event){
         try {
+            Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();
             Parent root = FXMLLoader.load(getClass().getResource("/optionsframe.fxml"));
             Scene scene=new Scene(root);
-            Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Registry student");
             stage.setScene(scene);
             stage.show();
@@ -90,4 +91,6 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
             throw new RuntimeException(e);
         }
     }
+    public Button getSearchBtn() {return searchBtn;}
+    public TextField getIdField() {return idField;}
 }

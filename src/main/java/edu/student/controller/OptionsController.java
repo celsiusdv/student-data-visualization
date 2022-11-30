@@ -30,6 +30,7 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //this.showRecordFrame();
+        this.showTableFrame();
     }
     @Override
     public void handle(ActionEvent event) {
@@ -40,7 +41,7 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
             showTableFrame();
         }
         if(option3.equals(event.getSource())){
-            showChartsFrame(event);
+            showChartsFrame(event,"");
         }
     }
 //----------------methods to handle fxml files
@@ -60,11 +61,22 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
             throw new RuntimeException(e);
         }
     }
-    public void showChartsFrame(ActionEvent event){
+    public void showChartsFrame(ActionEvent event,String studentId){
         try {
-            Parent chartsFrame= FXMLLoader.load(getClass().getResource("/chartsframe.fxml"));
-            Scene scene=new Scene(chartsFrame);
-            Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();
+            Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("/chartsframe.fxml"));
+            Parent chartFrame=loader.load();
+
+//instantiate controller here to set id from TableController.class, this object is called inside the column of show data buttons
+            ChartsController chartsController=loader.getController();
+//this flow control allows to show the chart frame if the textfield is empty or the user want to manually insert id to show data
+            chartsController.getIdField().setText(studentId);
+            if(chartsController.getIdField().getText().isEmpty()){
+                System.out.println("show chart frame without id and data");
+            }else chartsController.getSearchBtn().fire();
+
+
+            Scene scene=new Scene(chartFrame);
             stage.setScene(scene);
             stage.setTitle("Student Data");
             stage.show();

@@ -90,7 +90,9 @@ public class TableController implements Initializable {
                         btn.setOnAction((ActionEvent event) -> {
                             StudentScore studentScore=studentTable.getItems().get(getIndex());
                             System.out.println(studentScore.getStudentId());
-                            new OptionsController().showChartsFrame(event);
+
+                            new OptionsController().showChartsFrame(event,
+                                    ""+studentScore.getStudentId());
                         });
                     }
                     @Override
