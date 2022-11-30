@@ -67,14 +67,13 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
             FXMLLoader loader= new FXMLLoader(getClass().getResource("/chartsframe.fxml"));
             Parent chartFrame=loader.load();
 
-//instantiate controller here to set id from TableController.class, this object is called inside the column of show data buttons
+//instantiate controller here to set id from TableController.class, this object is called when an event is fired inside the column of show data buttons
             ChartsController chartsController=loader.getController();
 //this flow control allows to show the chart frame if the textfield is empty or the user want to manually insert id to show data
             chartsController.getIdField().setText(studentId);
             if(chartsController.getIdField().getText().isEmpty()){
                 System.out.println("show chart frame without id and data");
             }else chartsController.getSearchBtn().fire();
-
 
             Scene scene=new Scene(chartFrame);
             stage.setScene(scene);
