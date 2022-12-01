@@ -17,7 +17,11 @@
          </font>
       </Label>
       <Button fx:id="backButton" layoutX="48.0" layoutY="37.0" mnemonicParsing="false" onAction="#handle" text="back to menu" />
-      <LineChart fx:id="mathChart" layoutX="14.0" layoutY="138.0" prefHeight="200.0" prefWidth="390.0">
+      <Label layoutX="48.0" layoutY="89.0" text="search student data by id" />
+      <TextField fx:id="idField" layoutX="215.0" layoutY="85.0" prefHeight="26.0" prefWidth="75.0" />
+      <Button fx:id="searchBtn" layoutX="290.0" layoutY="85.0" mnemonicParsing="false" onAction="#handle" text="search" />
+
+      <LineChart fx:id="mathChart" layoutX="20.0" layoutY="138.0" prefHeight="200.0" prefWidth="390.0">
         <xAxis>
           <CategoryAxis fx:id="mathCategoryAxis" side="BOTTOM" />
         </xAxis>
@@ -25,8 +29,39 @@
           <NumberAxis fx:id="mathAttendanceAxis" side="LEFT" />
         </yAxis>
       </LineChart>
-      <Label layoutX="48.0" layoutY="89.0" text="search student data by id" />
-      <TextField fx:id="idField" layoutX="215.0" layoutY="85.0" prefHeight="26.0" prefWidth="75.0" />
-      <Button fx:id="searchBtn" layoutX="290.0" layoutY="85.0" mnemonicParsing="false" onAction="#handle" text="search" />
+
+      <LineChart fx:id="englishChart" layoutX="470.0" layoutY="138.0" prefHeight="200.0" prefWidth="390.0">
+         <xAxis>
+            <CategoryAxis fx:id="engCategoryAxis" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="engAttendanceAxis" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="programmingChart" layoutX="20.0" layoutY="365.0" prefHeight="200.0" prefWidth="390.0">
+         <xAxis>
+            <CategoryAxis fx:id="progCategoryAxis" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="progAttendanceAxis" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="physicsChart" layoutX="470.0" layoutY="365.0" prefHeight="200.0" prefWidth="390.0">
+         <xAxis>
+            <CategoryAxis fx:id="physicsCategoryAxis" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="physicsAttendanceAxis" side="LEFT" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="economicsChart" layoutX="20.0" layoutY="595.0" prefHeight="200.0" prefWidth="390.0">
+         <xAxis>
+            <CategoryAxis fx:id="economicsCategoryAxis" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="economicsAttendanceAxis" side="LEFT" />
+         </yAxis>
+      </LineChart>
+
    </children>
 </AnchorPane>
