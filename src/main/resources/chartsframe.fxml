@@ -21,46 +21,13 @@
       <TextField fx:id="idField" layoutX="215.0" layoutY="85.0" prefHeight="26.0" prefWidth="75.0" />
       <Button fx:id="searchBtn" layoutX="290.0" layoutY="85.0" mnemonicParsing="false" onAction="#handle" text="search" />
 
-      <LineChart fx:id="mathChart" layoutX="20.0" layoutY="138.0" prefHeight="200.0" prefWidth="390.0">
+      <LineChart fx:id="subjectsChart" layoutX="20.0" layoutY="138.0" prefHeight="418.0" prefWidth="653.0">
         <xAxis>
-          <CategoryAxis fx:id="mathCategoryAxis" side="BOTTOM" />
+          <CategoryAxis fx:id="subjectCategoryAxis" side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis fx:id="mathAttendanceAxis" side="LEFT" />
+          <NumberAxis fx:id="subjectAttendanceAxis" side="LEFT" />
         </yAxis>
-      </LineChart>
-
-      <LineChart fx:id="englishChart" layoutX="470.0" layoutY="138.0" prefHeight="200.0" prefWidth="390.0">
-         <xAxis>
-            <CategoryAxis fx:id="engCategoryAxis" side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis fx:id="engAttendanceAxis" side="LEFT" />
-         </yAxis>
-      </LineChart>
-      <LineChart fx:id="programmingChart" layoutX="20.0" layoutY="365.0" prefHeight="200.0" prefWidth="390.0">
-         <xAxis>
-            <CategoryAxis fx:id="progCategoryAxis" side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis fx:id="progAttendanceAxis" side="LEFT" />
-         </yAxis>
-      </LineChart>
-      <LineChart fx:id="physicsChart" layoutX="470.0" layoutY="365.0" prefHeight="200.0" prefWidth="390.0">
-         <xAxis>
-            <CategoryAxis fx:id="physicsCategoryAxis" side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis fx:id="physicsAttendanceAxis" side="LEFT" />
-         </yAxis>
-      </LineChart>
-      <LineChart fx:id="economicsChart" layoutX="20.0" layoutY="595.0" prefHeight="200.0" prefWidth="390.0">
-         <xAxis>
-            <CategoryAxis fx:id="economicsCategoryAxis" side="BOTTOM" />
-         </xAxis>
-         <yAxis>
-            <NumberAxis fx:id="economicsAttendanceAxis" side="LEFT" />
-         </yAxis>
       </LineChart>
 
    </children>
