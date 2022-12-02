@@ -4,6 +4,9 @@ import edu.student.dao.SubjectDAO;
 import edu.student.model.Student;
 import edu.student.model.StudentScore;
 import edu.student.model.Subject;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 //task 2
@@ -46,6 +49,7 @@ public class SubjectService {
             subject.setMathScore(0);//reset subject variable to avoid conflict in SubjectDAO.class
         }
     }
+
     public void updateEnglishScore(CellEditEvent<StudentScore, Integer> event){
         studentScore=event.getTableView().getSelectionModel().getSelectedItem();
         subject.setStudentID(studentScore.getStudentId());
@@ -92,5 +96,23 @@ public class SubjectService {
 
             subject.setEconomicsScore(0);//reset subject variable to avoid conflict in SubjectDAO.class
         }
+    }
+
+    public int[] retrieveScores(int id){
+        int[] scoresData;
+        subject.setStudentID(id);
+        if(id > 0){
+//retrieve score from the given id in a new score object inside an array to iterate in ChartController.class updateScoresChart()
+            Subject score= (Subject) subjectDAO.retrieveScoresById(subject);
+            scoresData= new int[]{
+                    score.getMathScore(),
+                    score.getEnglishScore(),
+                    score.getProgrammingScore(),
+                    score.getPhysicsScore(),
+                    score.getEconomicsScore()
+            };
+            subject.setStudentID(0);//reset model to get new value when this metod is called
+            return scoresData;
+        }else return null;
     }
 }

@@ -31,11 +31,53 @@ public class SubjectDAO extends Connector {
                                     resultSet.getInt(5),resultSet.getInt(6));
                 subjectScores.add(subject);//fill list and set later in student service on ObservableList if is required
             }
+            return subjectScores;
         }catch (SQLException e){
             System.out.println("error in method retrieveScores() from SubjectDAO.class");
             e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+                resultSet.close();
+            } catch (SQLException e) {throw new RuntimeException(e);}
         }
-        return subjectScores;
+    }
+/////////////////////////////////////////////////////////////////////////////
+////----------------------------retrieve scores from database--------------
+/////////////////////////////////////////////////////////////////////////////
+    public Subject retrieveScoresById(Subject subject){
+        Subject subjectObj=new Subject();
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        String retrieveScore="SELECT math_score, english_score, programming_score, physics_score, economics_score\n" +
+                "FROM subjects WHERE studentID=?";
+        ResultSet resultSet=null;
+        try{
+            connection=super.getConnection();
+            preparedStatement=connection.prepareStatement(retrieveScore);
+            preparedStatement.setInt(1,subject.getStudentID());
+            resultSet=preparedStatement.executeQuery();
+            if(resultSet.next()){
+                subjectObj.setMathScore(resultSet.getInt("math_score"));
+                subjectObj.setEnglishScore(resultSet.getInt("english_score"));
+                subjectObj.setProgrammingScore(resultSet.getInt("programming_score"));
+                subjectObj.setPhysicsScore(resultSet.getInt("physics_score"));
+                subjectObj.setEconomicsScore(resultSet.getInt("economics_score"));
+            }
+            return subjectObj;
+        }catch (SQLException e){
+            System.out.println("error in method retrieveScores() from SubjectDAO.class");
+            e.printStackTrace();
+            return null;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+                resultSet.close();
+            } catch (SQLException e) {throw new RuntimeException(e);}
+        }
     }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,10 @@
 package edu.student.controller;
 
 import edu.student.services.AttendanceService;
+import edu.student.services.SubjectService;
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,10 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -26,29 +27,36 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     @FXML Button searchBtn;
     @FXML TextField idField;
 
-    @FXML LineChart<String,Number> subjectsChart;//container of months and values
+    @FXML LineChart<String,Number> attendancesChart;//container of months and attendances values
     @FXML CategoryAxis subjectCategoryAxis;//horizontal axis for months names
     @FXML NumberAxis subjectAttendanceAxis;//vertical axis indicator for attendances values
-
-    XYChart.Series<String, Number> mathSeries;//collection of values(attendances, months) to set in the chart
+    XYChart.Series<String, Number> mathSeries;//collection of values(attendances, months) to set in the line chart
     XYChart.Series<String, Number> engSeries;
     XYChart.Series<String, Number> progSeries;
     XYChart.Series<String, Number> physicsSeries;
     XYChart.Series<String, Number> economicsSeries;
 
     String[] months;
-
     AttendanceService attendanceService;
+
+    @FXML PieChart scoresChart;//container of scores per subjects
+    ObservableList<PieChart.Data> scoresData;
+    SubjectService subjectService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         months= new String[]{"mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov"};
         attendanceService=new AttendanceService();
+        setAttendancesChart();
         setChartVerticalRange();
-        setSubjectChart();
+
+        subjectService=new SubjectService();
+        setScoresChart();
+        setValueOnSlice();
     }
 
-    public void setSubjectChart(){
+//--------------------------creating line chart for attendances
+    public void setAttendancesChart(){
         mathSeries = new XYChart.Series();
         mathSeries.setName("Math");
         engSeries = new XYChart.Series();
@@ -67,10 +75,9 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
             economicsSeries.getData().add(new XYChart.Data(months[i], 3));
             physicsSeries.getData().add(new XYChart.Data(months[i], 4));
         }
-        subjectsChart.getData().addAll(mathSeries,engSeries,progSeries,physicsSeries,economicsSeries);
+        attendancesChart.getData().addAll(mathSeries,engSeries,progSeries,physicsSeries,economicsSeries);
     }
-
-    public void setChartValues(int id){
+    public void updateChartAttendancesValues(int id){
         //update values for every subject in chart
         int[] mathAttendances=attendanceService.showMathAttendances(id);
         int[] engAttendances=attendanceService.showEnglishAttendances(id);
@@ -94,6 +101,33 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         subjectAttendanceAxis.setLabel("attendances");
     }
 
+//---------------------------creating pie chart for subjects scores
+    public void setScoresChart(){
+        scoresData= FXCollections.observableArrayList();
+        scoresData.addAll(
+                new PieChart.Data("math",10),
+                new PieChart.Data("english",10),
+                new PieChart.Data("programming",10),
+                new PieChart.Data("physics",10),
+                new PieChart.Data("economics",10));
+        scoresChart.setData(scoresData);
+        scoresChart.setAnimated(true);
+    }
+    public void updateScoresChart(int id){
+        int[] scores= subjectService.retrieveScores(id);
+        for(int i=0; i< scores.length; i++){
+            scoresChart.getData().get(i).setPieValue(scores[i]);
+        }
+    }
+    public void setValueOnSlice(){
+        for(int i=0; i<scoresData.size(); i++){
+            scoresData.get(i).nameProperty().bind(
+                    Bindings.concat(
+                            scoresData.get(i).getName()," ",scoresData.get(i).pieValueProperty(),""));
+        }
+    }
+
+
     @Override
     public void handle(ActionEvent event) {
         if(backButton.equals(event.getSource())){
@@ -101,7 +135,8 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         }
         if(searchBtn.equals(event.getSource())){
             int id= Integer.parseInt(idField.getText());
-            setChartValues(id);
+            updateChartAttendancesValues(id);
+            updateScoresChart(id);
         }
     }
 
