@@ -16,16 +16,18 @@ import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class ChartsController implements Initializable, EventHandler<ActionEvent> {
-    @FXML Button backButton;
-    @FXML Button searchBtn;
-    @FXML TextField idField;
+    @FXML private Button backButton;
+    @FXML private Button searchBtn;
+    @FXML private TextField idField;
 
     @FXML LineChart<String,Number> attendancesChart;//container of months and attendances values
     @FXML CategoryAxis subjectCategoryAxis;//horizontal axis for months names
@@ -35,13 +37,16 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     XYChart.Series<String, Number> progSeries;
     XYChart.Series<String, Number> physicsSeries;
     XYChart.Series<String, Number> economicsSeries;
+    private String[] months;//months to set in the linechart
+    private AttendanceService attendanceService;//service to get student's attendance of subjects per month
+    int[] mathAttendances=new int[9];//array to set amount of attendances per month
 
-    String[] months;
-    AttendanceService attendanceService;
+    @FXML private PieChart scoresChart;//container of total scores per subjects
+    private ObservableList<PieChart.Data> scoresData;//collection of values(subject, scores) to set in the pie chart
+    private SubjectService subjectService;//service to get student's score per subject
 
-    @FXML PieChart scoresChart;//container of scores per subjects
-    ObservableList<PieChart.Data> scoresData;
-    SubjectService subjectService;
+    @FXML private Pane averageAttendancesContainer;
+    private ProgressIndicatorController indicatorController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,6 +58,8 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         subjectService=new SubjectService();
         setScoresChart();
         setValueOnSlice();
+
+        setAverageAttendancesIndicator();
     }
 
 //--------------------------creating line chart for attendances
@@ -79,7 +86,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     }
     public void updateChartAttendancesValues(int id){
         //update values for every subject in chart
-        int[] mathAttendances=attendanceService.showMathAttendances(id);
+        mathAttendances=attendanceService.showMathAttendances(id);
         int[] engAttendances=attendanceService.showEnglishAttendances(id);
         int[] progAttendances=attendanceService.showProgrammingAttendances(id);
         int[] physAttendances=attendanceService.showPhysicsAttendances(id);
@@ -114,7 +121,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         scoresChart.setAnimated(true);
     }
     public void updateScoresChart(int id){
-        int[] scores= subjectService.retrieveScores(id);
+        int[] scores= subjectService.retrieveScores(id);//this array contains total scores from every subject
         for(int i=0; i< scores.length; i++){
             scoresChart.getData().get(i).setPieValue(scores[i]);
         }
@@ -127,16 +134,37 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         }
     }
 
-
+//--------------------------creating progress indicator for average attendances per subject
+    public void setAverageAttendancesIndicator(){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("/progressindicator.fxml"));
+            Parent progressFrame=loader.load();
+            indicatorController=loader.getController();
+            averageAttendancesContainer.getChildren().add(progressFrame);
+        } catch (IOException e) {throw new RuntimeException(e);}
+    }
+    public void updateAverageIndicatorPanel(){
+// if a new id is set, update the indicator by removing and setting it again with the method in the following line
+        averageAttendancesContainer.getChildren().remove(0);
+        setAverageAttendancesIndicator();
+        indicatorController.setMathAverageAttendance(mathAttendances);
+    }
     @Override
     public void handle(ActionEvent event) {
         if(backButton.equals(event.getSource())){
             showMainMenuFrame(event);
         }
         if(searchBtn.equals(event.getSource())){
-            int id= Integer.parseInt(idField.getText());
-            updateChartAttendancesValues(id);
-            updateScoresChart(id);
+            try{
+                if(!idField.getText().isEmpty()){
+                    int id= Integer.parseInt(idField.getText());
+                    updateChartAttendancesValues(id);
+                    updateScoresChart(id);
+                    updateAverageIndicatorPanel();
+                }else System.out.println("the field for the id is empty");
+            }catch (NumberFormatException e){
+                System.out.println("wrong input, only numbers are allowed");
+            }
         }
     }
 

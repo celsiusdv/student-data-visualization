@@ -8,9 +8,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="730.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
+<AnchorPane prefHeight="730.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
    <children>
       <Label layoutX="320.0" layoutY="39.0" text="subjects attendances per month">
          <font>
@@ -30,7 +31,13 @@
           <NumberAxis fx:id="subjectAttendanceAxis" side="LEFT" />
         </yAxis>
       </LineChart>
-      <PieChart fx:id="scoresChart" layoutX="744.0" layoutY="148.0" prefHeight="332.0" prefWidth="454.0" />
+      <PieChart fx:id="scoresChart" layoutX="767.0" layoutY="139.0" prefHeight="341.0" prefWidth="475.0" />
+      <Label layoutX="150.0" layoutY="517.0" text="total average attendances by subject">
+         <font>
+            <Font name="Inconsolata Bold" size="20.0" />
+         </font>
+      </Label>
+      <Pane fx:id="averageAttendancesContainer" layoutX="50.0" layoutY="564.0" prefHeight="140.0" prefWidth="200.0" style="-fx-background-color: #D0D5BA;" />
 
    </children>
 </AnchorPane>

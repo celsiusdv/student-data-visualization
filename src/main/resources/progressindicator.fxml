@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.ProgressIndicator?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="21.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ProgressIndicatorController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0" style="-fx-background-color: gray;">
+         <children>
+            <Label contentDisplay="CENTER" text="Math" VBox.vgrow="NEVER">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: lightblue;">
+               <children>
+                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" />
+                  <ProgressIndicator fx:id="progressIndicator" progress="0.3" radius="35.0" />
+                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Label fx:id="progress" text="0" />
+               </children>
+            </StackPane>
+         </children>
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+      </VBox>
+   </children>
+</HBox>
