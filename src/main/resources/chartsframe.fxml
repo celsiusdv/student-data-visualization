@@ -37,7 +37,7 @@
             <Font name="Inconsolata Bold" size="20.0" />
          </font>
       </Label>
-      <Pane fx:id="averageAttendancesContainer" layoutX="50.0" layoutY="564.0" prefHeight="140.0" prefWidth="200.0" style="-fx-background-color: #D0D5BA;" />
+      <Pane fx:id="averageAttendancesContainer" layoutX="50.0" layoutY="564.0" prefHeight="140.0" prefWidth="200.0" />
 
    </children>
 </AnchorPane>

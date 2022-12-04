@@ -29,24 +29,28 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     @FXML private Button searchBtn;
     @FXML private TextField idField;
 
-    @FXML LineChart<String,Number> attendancesChart;//container of months and attendances values
-    @FXML CategoryAxis subjectCategoryAxis;//horizontal axis for months names
-    @FXML NumberAxis subjectAttendanceAxis;//vertical axis indicator for attendances values
-    XYChart.Series<String, Number> mathSeries;//collection of values(attendances, months) to set in the line chart
-    XYChart.Series<String, Number> engSeries;
-    XYChart.Series<String, Number> progSeries;
-    XYChart.Series<String, Number> physicsSeries;
-    XYChart.Series<String, Number> economicsSeries;
+    @FXML private LineChart<String,Number> attendancesChart;//container of months and attendances values
+    @FXML private CategoryAxis subjectCategoryAxis;//horizontal axis for months names
+    @FXML private NumberAxis subjectAttendanceAxis;//vertical axis indicator for attendances values
+    private XYChart.Series<String, Number> mathSeries;//collection of values(attendances, months) to set in the line chart
+    private XYChart.Series<String, Number> engSeries;
+    private XYChart.Series<String, Number> progSeries;
+    private XYChart.Series<String, Number> physicsSeries;
+    private XYChart.Series<String, Number> economicsSeries;
     private String[] months;//months to set in the linechart
     private AttendanceService attendanceService;//service to get student's attendance of subjects per month
-    int[] mathAttendances=new int[9];//array to set amount of attendances per month
+    private int[] mathAttendances=new int[9];//array to set amount of attendances per month in the line chart
+    private int[] engAttendances=new int[9];
+    private int[] progAttendances=new int[9];
+    private int[] physAttendances=new int[9];
+    private int[] econAttendances=new int[9];
 
     @FXML private PieChart scoresChart;//container of total scores per subjects
     private ObservableList<PieChart.Data> scoresData;//collection of values(subject, scores) to set in the pie chart
     private SubjectService subjectService;//service to get student's score per subject
 
-    @FXML private Pane averageAttendancesContainer;
-    private ProgressIndicatorController indicatorController;
+    @FXML private Pane averageAttendancesContainer;//container for progress indicators
+    private ProgressIndicatorController indicatorController;//this controller contains methods to set values in progress indicators
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -87,10 +91,10 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     public void updateChartAttendancesValues(int id){
         //update values for every subject in chart
         mathAttendances=attendanceService.showMathAttendances(id);
-        int[] engAttendances=attendanceService.showEnglishAttendances(id);
-        int[] progAttendances=attendanceService.showProgrammingAttendances(id);
-        int[] physAttendances=attendanceService.showPhysicsAttendances(id);
-        int[] econAttendances=attendanceService.showEconomicsAttendances(id);
+        engAttendances=attendanceService.showEnglishAttendances(id);
+        progAttendances=attendanceService.showProgrammingAttendances(id);
+        physAttendances=attendanceService.showPhysicsAttendances(id);
+        econAttendances=attendanceService.showEconomicsAttendances(id);
         for (int i=0;i<months.length; i++){
             mathSeries.getData().get(i).setYValue(mathAttendances[i]);
             engSeries.getData().get(i).setYValue(engAttendances[i]);
@@ -123,7 +127,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     public void updateScoresChart(int id){
         int[] scores= subjectService.retrieveScores(id);//this array contains total scores from every subject
         for(int i=0; i< scores.length; i++){
-            scoresChart.getData().get(i).setPieValue(scores[i]);
+            if(scores[i] > 0)scoresChart.getData().get(i).setPieValue(scores[i]);
         }
     }
     public void setValueOnSlice(){
@@ -144,10 +148,14 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         } catch (IOException e) {throw new RuntimeException(e);}
     }
     public void updateAverageIndicatorPanel(){
-// if a new id is set, update the indicator by removing and setting it again with the method in the following line
+// if a new id is set, update the indicator by removing the children pane and setting it again with the method in the following line
         averageAttendancesContainer.getChildren().remove(0);
         setAverageAttendancesIndicator();
         indicatorController.setMathAverageAttendance(mathAttendances);
+        indicatorController.setEnglishAverageAttendance(engAttendances);
+        indicatorController.setProgrammingAverageAttendance(progAttendances);
+        indicatorController.setPhysicsAverageAttendance(physAttendances);
+        indicatorController.setEconomicsAverageAttendance(econAttendances);
     }
     @Override
     public void handle(ActionEvent event) {

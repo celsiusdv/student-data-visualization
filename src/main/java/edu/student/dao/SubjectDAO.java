@@ -81,7 +81,7 @@ public class SubjectDAO extends Connector {
     }
 
 /////////////////////////////////////////////////////////////////////////////
-//-----------------------insert/update scores to database------------------
+//-----------------insert/update scores from record frame input--------------
 /////////////////////////////////////////////////////////////////////////////
     public boolean isEveryScoreUpdated(Subject subject, Student student){
         Connection connection=null;
@@ -112,7 +112,7 @@ public class SubjectDAO extends Connector {
         }
     }
 ///////////////////////////////////////////////////////////////////////////////
-////-----------------------update  to database------------------
+////---------------------update  to database from table input------------------
 ///////////////////////////////////////////////////////////////////////////////
     public boolean isScoreFromTableUpdated(Subject subject){
         Connection connection=null;
@@ -154,7 +154,6 @@ public class SubjectDAO extends Connector {
                 preparedStatement.setInt(2,subject.getStudentID());
                 preparedStatement.execute();
             }
-
             return true;
         }catch (SQLException e){
             System.out.println("error in method isScoreFromTableUpdated() from SubjectDAO.class");

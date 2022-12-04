@@ -1,0 +1,31 @@
+.mainPane{/*anchor pane, or main container*/
+    /*-fx-background-color: #D0F0E6;styles for main container*/
+}
+.mathVBox{/*container of title1 stackPane and title2 */
+    -fx-background-color: #8AC1CA;
+    -fx-background-radius: 8 8 10 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4),  28px, 0, 2px, 1px);
+
+}
+.mathStackPane{/*container of circle shape and progress indicator*/
+    -fx-background-color: #DBF5F5;
+    -fx-background-radius: 0 0 8 8;
+}
+.mathOuterCircle{/*outer circle of progress indicator*/
+    -fx-fill: #DBF5F5;
+    -fx-stroke: transparent; /*#758DBC;*/
+    -fx-stroke-width: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3),  20px, 0, 5px, 3px);
+}
+.mathProgressIndicator{
+    -fx-color: #22B8B3;
+    -fx-background-radius: 100%;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3),  20px, 0, 5px, 3px);
+
+}
+.mathInnerCircle {/*inner circle of progress indicator*/
+    -fx-fill: #DBF5F5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3),  20px, 0, 5px, 3px);
+    -fx-stroke: transparent;
+    /*-fx-stroke-width: 2;*/
+}

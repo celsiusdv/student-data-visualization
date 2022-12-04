@@ -21,6 +21,7 @@ public class SubjectService {
         studentScore=new StudentScore();
         subjectDAO=new SubjectDAO();
     }
+//---insert updates from student record frame
     public void updateScores(int mathScore, int englishScore, int programmingScore,
                              int physicsScore, int economicsScore, int studentId ){
         if(mathScore >= 0) subject.setMathScore(mathScore);
@@ -38,6 +39,7 @@ public class SubjectService {
                 "addScores() in SubjectService.class");
     }
 
+//---update scores from tableframe inputs
     public void updateMathScore(CellEditEvent<StudentScore, Integer> event){
         studentScore=event.getTableView().getSelectionModel().getSelectedItem();
         subject.setStudentID(studentScore.getStudentId());
@@ -49,7 +51,6 @@ public class SubjectService {
             subject.setMathScore(0);//reset subject variable to avoid conflict in SubjectDAO.class
         }
     }
-
     public void updateEnglishScore(CellEditEvent<StudentScore, Integer> event){
         studentScore=event.getTableView().getSelectionModel().getSelectedItem();
         subject.setStudentID(studentScore.getStudentId());
@@ -61,7 +62,6 @@ public class SubjectService {
             subject.setEnglishScore(0);//reset subject variable to avoid conflict in SubjectDAO.class
         }
     }
-
     public void updateProgrammingScore(CellEditEvent<StudentScore, Integer> event){
         studentScore=event.getTableView().getSelectionModel().getSelectedItem();
         subject.setStudentID(studentScore.getStudentId());
@@ -73,7 +73,6 @@ public class SubjectService {
             subject.setProgrammingScore(0);//reset subject variable to avoid conflict in SubjectDAO.class
         }
     }
-
     public void updatePhysicsScore(CellEditEvent<StudentScore, Integer> event){
         studentScore=event.getTableView().getSelectionModel().getSelectedItem();
         subject.setStudentID(studentScore.getStudentId());
@@ -85,7 +84,6 @@ public class SubjectService {
             subject.setPhysicsScore(0);//reset subject variable to avoid conflict in SubjectDAO.class
         }
     }
-
     public void updateEconomicsScore(CellEditEvent<StudentScore, Integer> event){
         studentScore=event.getTableView().getSelectionModel().getSelectedItem();
         subject.setStudentID(studentScore.getStudentId());
@@ -98,21 +96,21 @@ public class SubjectService {
         }
     }
 
+//---retrieve scores to show in piechart
     public int[] retrieveScores(int id){
         int[] scoresData;
         subject.setStudentID(id);
-        if(id > 0){
 //retrieve score from the given id in a new score object inside an array to iterate in ChartController.class updateScoresChart()
-            Subject score= (Subject) subjectDAO.retrieveScoresById(subject);
-            scoresData= new int[]{
-                    score.getMathScore(),
-                    score.getEnglishScore(),
-                    score.getProgrammingScore(),
-                    score.getPhysicsScore(),
-                    score.getEconomicsScore()
-            };
-            subject.setStudentID(0);//reset model to get new value when this metod is called
-            return scoresData;
-        }else return null;
+        Subject score= (Subject) subjectDAO.retrieveScoresById(subject);
+        scoresData= new int[]{
+                score.getMathScore(),
+                score.getEnglishScore(),
+                score.getProgrammingScore(),
+                score.getPhysicsScore(),
+                score.getEconomicsScore()
+        };
+        subject.setStudentID(0);//reset model to get new value when this metod is called
+        return scoresData;
+
     }
 }
