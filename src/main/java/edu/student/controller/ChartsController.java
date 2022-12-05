@@ -17,6 +17,7 @@ import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     private XYChart.Series<String, Number> economicsSeries;
     private String[] months;//months to set in the linechart
     private AttendanceService attendanceService;//service to get student's attendance of subjects per month
-    private int[] mathAttendances=new int[9];//array to set amount of attendances per month in the line chart
+    private int[] mathAttendances=new int[9];//array to set amount of attendances per month in the line chart and get the average in the progress indicator
     private int[] engAttendances=new int[9];
     private int[] progAttendances=new int[9];
     private int[] physAttendances=new int[9];
@@ -48,9 +49,13 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     @FXML private PieChart scoresChart;//container of total scores per subjects
     private ObservableList<PieChart.Data> scoresData;//collection of values(subject, scores) to set in the pie chart
     private SubjectService subjectService;//service to get student's score per subject
+    int[] scores;//array that contains all the scores per subject
 
     @FXML private Pane averageAttendancesContainer;//container for progress indicators
     private ProgressIndicatorController indicatorController;//this controller contains methods to set values in progress indicators
+
+    @FXML private StackPane totalScoreContainer;//container for progress bar
+    private ProgressBarController progressBarController;//this controller contains methods to set values in progress bar
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,6 +69,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         setValueOnSlice();
 
         setAverageAttendancesIndicator();
+        setAverageScoreBar();
     }
 
 //--------------------------creating line chart for attendances
@@ -102,6 +108,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
             physicsSeries.getData().get(i).setYValue(physAttendances[i]);
             economicsSeries.getData().get(i).setYValue(econAttendances[i]);
         }
+        updateAverageIndicatorPanel();//method to fill all the progress indicators with the average from attendances arrays
     }
     public void setChartVerticalRange(){
         //setting vertical indicator for the line
@@ -125,10 +132,11 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         scoresChart.setAnimated(true);
     }
     public void updateScoresChart(int id){
-        int[] scores= subjectService.retrieveScores(id);//this array contains total scores from every subject
+        scores= subjectService.retrieveScores(id);//this array contains total scores from every subject
         for(int i=0; i< scores.length; i++){
             if(scores[i] > 0)scoresChart.getData().get(i).setPieValue(scores[i]);
         }
+        updateAverageScoreBar();//method to progress bar with the total sum of values from the score array, total score earned by the student
     }
     public void setValueOnSlice(){
         for(int i=0; i<scoresData.size(); i++){
@@ -142,9 +150,9 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     public void setAverageAttendancesIndicator(){
         try {
             FXMLLoader loader= new FXMLLoader(getClass().getResource("/progressindicator.fxml"));
-            Parent progressFrame=loader.load();
+            Parent progressIndicatorFrame=loader.load();
             indicatorController=loader.getController();
-            averageAttendancesContainer.getChildren().add(progressFrame);
+            averageAttendancesContainer.getChildren().add(progressIndicatorFrame);
         } catch (IOException e) {throw new RuntimeException(e);}
     }
     public void updateAverageIndicatorPanel(){
@@ -157,6 +165,23 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         indicatorController.setPhysicsAverageAttendance(physAttendances);
         indicatorController.setEconomicsAverageAttendance(econAttendances);
     }
+
+//--------------------------creating progres bar for amount of score earned by the student
+    public void setAverageScoreBar(){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("/progressbar.fxml"));
+            Parent progressBarFrame=loader.load();
+            progressBarController=loader.getController();
+            totalScoreContainer.getChildren().add(progressBarFrame);
+        } catch (IOException e) {throw new RuntimeException(e);}
+    }
+    public void updateAverageScoreBar(){
+        int scoreEarned=0;
+        for(int i=0; i< scores.length;i++){
+            scoreEarned+=scores[i];
+        }
+        progressBarController.setScoreRange(scoreEarned);
+    }
     @Override
     public void handle(ActionEvent event) {
         if(backButton.equals(event.getSource())){
@@ -168,14 +193,12 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
                     int id= Integer.parseInt(idField.getText());
                     updateChartAttendancesValues(id);
                     updateScoresChart(id);
-                    updateAverageIndicatorPanel();
                 }else System.out.println("the field for the id is empty");
             }catch (NumberFormatException e){
                 System.out.println("wrong input, only numbers are allowed");
             }
         }
     }
-
     public void showMainMenuFrame(ActionEvent event){
         try {
             Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();

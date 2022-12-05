@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="730.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
@@ -38,6 +39,12 @@
          </font>
       </Label>
       <Pane fx:id="averageAttendancesContainer" layoutX="50.0" layoutY="564.0" prefHeight="140.0" prefWidth="200.0" />
+      <Label layoutX="963.0" layoutY="517.0" text="total score">
+         <font>
+            <Font name="Inconsolata Bold" size="20.0" />
+         </font>
+      </Label>
+      <StackPane fx:id="totalScoreContainer" layoutX="833.0" layoutY="548.0" prefHeight="88.0" prefWidth="357.0" />
 
    </children>
 </AnchorPane>
