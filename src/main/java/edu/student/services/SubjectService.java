@@ -22,8 +22,9 @@ public class SubjectService {
         subjectDAO=new SubjectDAO();
     }
 //---insert updates from student record frame
-    public void updateScores(int mathScore, int englishScore, int programmingScore,
+    public String updateScores(int mathScore, int englishScore, int programmingScore,
                              int physicsScore, int economicsScore, int studentId ){
+        String warn=null;
         if(mathScore >= 0) subject.setMathScore(mathScore);
         if(englishScore >= 0) subject.setEnglishScore(englishScore);
         if(programmingScore >= 0) subject.setProgrammingScore(programmingScore);
@@ -32,16 +33,15 @@ public class SubjectService {
         student.setStudentId(studentId);
 
         if(subjectDAO.isEveryScoreUpdated(subject,student)==true){
-            System.out.println("scores added succesfully, validation output from method" +
-                    " addScores() in SubjectService.class");
+            warn="scores added succesfully";
 
-        }else System.out.println("scores cannot be added, validation output from method " +
-                "addScores() in SubjectService.class");
+        }else warn="add scores failed";
+        return warn;
     }
 
-//---update scores from tableframe inputs
+//---update scores from tableview inputs
     public void updateMathScore(CellEditEvent<StudentScore, Integer> event){
-        studentScore=event.getTableView().getSelectionModel().getSelectedItem();
+        studentScore=event.getTableView().getSelectionModel().getSelectedItem();//get values from the row to fill subject model class
         subject.setStudentID(studentScore.getStudentId());
         subject.setMathScore(event.getNewValue());
 

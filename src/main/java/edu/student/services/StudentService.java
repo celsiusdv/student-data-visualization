@@ -32,18 +32,20 @@ public class StudentService {
         return scoreList;
     }
 
-    public void createStudent(int studentId, String studentName, String studentLastName){
+    public String createStudent(int studentId, String studentName, String studentLastName){
+        String warn=null;
         if(studentDAO.isStudentAlreadyCreated(studentId)==false){
             student.setStudentId(studentId);
             student.setFirstName(studentName);
             student.setLastName(studentLastName);
 
             if(studentDAO.isStudentCreated(student)==true){
-                System.out.println("student created succesfully, validation output from method" +
-                        " createStudent() in StudentService.class");
-                student=null;
+                warn="student created successfully";
             }
-        }else System.out.println("student already exist");
+        }else{
+            warn="student already exists";
+        }
+        return warn;
     }
 
 //---------service to update student id in TableController

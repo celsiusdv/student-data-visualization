@@ -1,7 +1,6 @@
 package edu.student.model;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 public class Attendance {
     private int student_attendance_id;
@@ -28,7 +27,7 @@ public class Attendance {
     public void setStudentAttendanceId(int student_attendance_id) {this.student_attendance_id = student_attendance_id;}
     public void setMathAttendance(boolean math_attendance) {this.math_attendance = math_attendance;}
     public void setEnglishAttendance(boolean english_attendance) {this.english_attendance = english_attendance;}
-    public void setProgramming_attendance(boolean programming_attendance) {this.programming_attendance = programming_attendance;}
+    public void setProgrammingAttendance(boolean programming_attendance) {this.programming_attendance = programming_attendance;}
     public void setPhysicsAttendance(boolean physics_attendance) {this.physics_attendance = physics_attendance;}
     public void setEconomicsAttendance(boolean economics_attendance) {this.economics_attendance = economics_attendance;}
     public void setAttendanceMonth(Date attendance_month) {this.attendance_month = attendance_month;}

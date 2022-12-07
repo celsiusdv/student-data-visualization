@@ -220,6 +220,11 @@ public class StudentDAO extends Connector {
             System.out.println("error in deleteStudent method from StudentDAO.class");
             e.printStackTrace();
             return false;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
 }

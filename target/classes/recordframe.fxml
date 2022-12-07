@@ -63,6 +63,8 @@
             <Font name="Rubik Medium" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="addScoreBtn" layoutX="107.0" layoutY="568.0" mnemonicParsing="false" onAction="#handle" prefHeight="40.0" prefWidth="124.0" text="Set student score" />
+      <Button fx:id="addScoreBtn" layoutX="378.0" layoutY="566.0" mnemonicParsing="false" onAction="#handle" prefHeight="40.0" prefWidth="124.0" text="Set student score" />
+      <Label fx:id="addStudentLabel" layoutX="135.0" layoutY="229.0" />
+      <Label fx:id="addScoreLabel" layoutX="115.0" layoutY="566.0" />
    </children>
 </AnchorPane>

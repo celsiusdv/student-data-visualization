@@ -180,4 +180,35 @@ public class AttendanceDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//------------------------add attendanes for visualization purposes-----------
+///////////////////////////////////////////////////////////////////////////////////////////
+    public boolean areAttendancesInserted(Attendance attendance){
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        String update="INSERT INTO attendances VALUES(?,?,?,?,?,?,?)";
+        try{
+            connection=super.getConnection();
+            preparedStatement=connection.prepareStatement(update);
+            preparedStatement.setInt(1,attendance.getStudentAttendanceId());
+            preparedStatement.setBoolean(2,attendance.isMathAttendance());
+            preparedStatement.setBoolean(3,attendance.isEnglishAttendance());
+            preparedStatement.setBoolean(4,attendance.isProgrammingAttendance());
+            preparedStatement.setBoolean(5,attendance.isPhysicsAttendance());
+            preparedStatement.setBoolean(6,attendance.isEconomicsAttendance());
+            preparedStatement.setDate(7,attendance.getAttendanceMonth());
+            preparedStatement.execute();
+            return true;
+        }catch (SQLException e){
+            e.printStackTrace();
+            System.out.println("error from AttendanceDAO.class in areAttendancesInserted()");
+            return false;
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+            } catch (SQLException e) {throw new RuntimeException(e);}
+        }
+    }
 }

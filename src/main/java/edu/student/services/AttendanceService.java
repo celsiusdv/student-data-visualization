@@ -2,6 +2,8 @@ package edu.student.services;
 
 import edu.student.dao.AttendanceDAO;
 import edu.student.model.Attendance;
+import java.sql.Date;
+import java.util.Random;
 
 public class AttendanceService {
     Attendance attendance;
@@ -10,7 +12,7 @@ public class AttendanceService {
     public AttendanceService(){
         months= new String[]{"'march'", "'april'", "'may'",
                              "'june'", "'july'", "'august'",
-                             "'september'", "'october'", "'november'"};
+                             "'september'", "'october'", "'november'"};//this array will be iterated on AttendanceDAO class
         attendance= new Attendance();
         attendanceDAO=new AttendanceDAO();
     }
@@ -58,5 +60,32 @@ public class AttendanceService {
             economicsAttendances=attendanceDAO.retrieveEconomicsAttendances(attendance,months);
         }
         return economicsAttendances;
+    }
+
+    public String createAttendancesSample(int student_attendance_id){
+        int samplesAdded=0;
+        Date date=null;
+        int month=0;
+        for(month=3; month<12; month++){
+            for(int day=1;day<31; day++){
+                date= Date.valueOf("2020"+"-"+month+"-"+day);
+                Random mathAttendance = new Random();
+                Random engAttendance = new Random();
+                Random progAttendance = new Random();
+                Random physAttendance = new Random();
+                Random econAttendance = new Random();
+                attendance.setStudentAttendanceId(student_attendance_id);
+                attendance.setMathAttendance(mathAttendance.nextBoolean());
+                attendance.setEnglishAttendance(engAttendance.nextBoolean());
+                attendance.setProgrammingAttendance(progAttendance.nextBoolean());
+                attendance.setPhysicsAttendance(physAttendance.nextBoolean());
+                attendance.setEconomicsAttendance(econAttendance.nextBoolean());
+                attendance.setAttendanceMonth(date);
+
+                if(attendanceDAO.areAttendancesInserted(attendance))samplesAdded++;
+            }
+        }
+        return samplesAdded+" attendances generated randomly\n" +
+                "for samples in the line chart";
     }
 }
