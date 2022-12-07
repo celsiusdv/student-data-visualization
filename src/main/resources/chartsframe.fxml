@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="730.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
+<AnchorPane prefHeight="750.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
    <children>
       <Label layoutX="320.0" layoutY="39.0" text="subjects attendances per month">
          <font>

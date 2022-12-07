@@ -17,7 +17,7 @@
     -fx-stroke-width: 5;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3),  20px, 0, 5px, 3px);
 }
-.mathProgressIndicator{
+.mathProgressIndicator{/*circular bar of the progress indicator*/
     -fx-color: #22B8B3;
     -fx-background-radius: 100%;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3),  20px, 0, 5px, 3px);

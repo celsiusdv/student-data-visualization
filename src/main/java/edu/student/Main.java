@@ -12,7 +12,7 @@ public class Main extends Application {
 
     public void start(Stage stage) throws Exception {
         Parent root= FXMLLoader.load(getClass().getResource("/optionsframe.fxml"));
-        Scene scene=new Scene(root,990,730);
+        Scene scene=new Scene(root,1100,740);
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();//variable to get screen values
         stage.setX( (primaryScreenBounds.getWidth()/2) - (scene.getWidth()/1.5) );//window position
         stage.setTitle("Registry student");

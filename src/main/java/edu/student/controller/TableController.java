@@ -17,28 +17,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TableController implements Initializable {
-    @FXML
-    TableView<StudentScore> studentTable;
-    @FXML
-    TableColumn<StudentScore,Integer>idColumn;
-    @FXML
-    TableColumn<StudentScore,String>nameColumn;
-    @FXML
-    TableColumn<StudentScore,String>lastNameColumn;
-    @FXML
-    TableColumn<StudentScore,Integer>mathColumn;
-    @FXML
-    TableColumn<StudentScore,Integer>englishColumn;
-    @FXML
-    TableColumn<StudentScore,Integer>programmingColumn;
-    @FXML
-    TableColumn<StudentScore,Integer>physicsColumn;
-    @FXML
-    TableColumn<StudentScore,Integer>economicsColumn;
-    @FXML
-    TableColumn<StudentScore, Void>dataColumn;
-    @FXML
-    TableColumn<StudentScore, Void>deleteColumn;
+    @FXML TableView<StudentScore> studentTable;
+    @FXML TableColumn<StudentScore,Integer>idColumn;
+    @FXML TableColumn<StudentScore,String>nameColumn;
+    @FXML TableColumn<StudentScore,String>lastNameColumn;
+    @FXML TableColumn<StudentScore,Integer>mathColumn;
+    @FXML TableColumn<StudentScore,Integer>englishColumn;
+    @FXML TableColumn<StudentScore,Integer>programmingColumn;
+    @FXML TableColumn<StudentScore,Integer>physicsColumn;
+    @FXML TableColumn<StudentScore,Integer>economicsColumn;
+    @FXML TableColumn<StudentScore, Void>dataColumn;
+    @FXML TableColumn<StudentScore, Void>deleteColumn;
+    @FXML Label registeredStudentsLabel;
     ChartsController chartsController;
     StudentService studentService;
     SubjectService subjectService;
@@ -130,5 +120,8 @@ public class TableController implements Initializable {
         });
 
         studentTable.setItems(studentService.showScoresAndStudentOnTable());
+
+        registeredStudentsLabel.setText(String.valueOf(studentTable.getItems().size()));
+
     }
 }

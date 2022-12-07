@@ -4,24 +4,39 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="540.0" prefWidth="905.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.TableController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" stylesheets="@css/tableframestyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.TableController">
    <children>
-      <TableView fx:id="studentTable" editable="true" layoutX="26.0" layoutY="101.0" prefHeight="423.0" prefWidth="818.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="26.0">
+      <TableView fx:id="studentTable" editable="true" layoutX="34.0" layoutY="141.0" prefHeight="423.0" prefWidth="890.0" AnchorPane.bottomAnchor="35.80000000000001" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="141.00000000000006">
         <columns>
             <TableColumn fx:id="idColumn" prefWidth="75.99997329711914" text="Student Id" />
             <TableColumn fx:id="nameColumn" prefWidth="81.60003662109375" text="Name" />
             <TableColumn fx:id="lastNameColumn" prefWidth="78.40000915527344" text="Last Name" />
-            <TableColumn editable="false" minWidth="7.20001220703125" prefWidth="7.20001220703125" sortable="false" style="-fx-background-color: #8CDDA4;" />
-            <TableColumn fx:id="mathColumn" prefWidth="58.4000244140625" text="Math " />
-            <TableColumn fx:id="englishColumn" prefWidth="68.0" text="English" />
-            <TableColumn fx:id="programmingColumn" prefWidth="101.60003662109375" text="Programming" />
-            <TableColumn fx:id="physicsColumn" prefWidth="63.199951171875" text="Physics" />
-            <TableColumn fx:id="economicsColumn" prefWidth="94.40008544921875" text="Economics" />
-            <TableColumn fx:id="dataColumn" prefWidth="75.0" text="view data" />
-            <TableColumn fx:id="deleteColumn" prefWidth="73.5999755859375" text="delete" />
+            <TableColumn editable="false" minWidth="7.20001220703125" prefWidth="7.20001220703125" sortable="false" />
+            <TableColumn fx:id="mathColumn" prefWidth="100.0" style="-fx-alignment: center;" text="Math " />
+            <TableColumn fx:id="englishColumn" prefWidth="100.0" style="-fx-alignment: center;" text="English" />
+            <TableColumn fx:id="programmingColumn" prefWidth="101.60003662109375" style="-fx-alignment: center;" text="Programming" />
+            <TableColumn fx:id="physicsColumn" prefWidth="100.0" style="-fx-alignment: center;" text="Physics" />
+            <TableColumn fx:id="economicsColumn" prefWidth="100.0" style="-fx-alignment: center;" text="Economics" />
+            <TableColumn fx:id="dataColumn" prefWidth="110.0" text="view data" />
+            <TableColumn fx:id="deleteColumn" text="delete" />
         </columns>
       </TableView>
-      <Label layoutX="26.0" layoutY="45.0" prefHeight="27.0" prefWidth="210.0" text="Students score by subjects" />
+      <VBox alignment="CENTER" layoutX="34.0" layoutY="8.0" prefHeight="119.0" prefWidth="186.0" spacing="20.0" styleClass="VBox">
+         <children>
+            <Label alignment="CENTER" text="Registered students:">
+               <font>
+                  <Font name="Inconsolata Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="registeredStudentsLabel" text="0">
+               <font>
+                  <Font name="Inconsolata Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
