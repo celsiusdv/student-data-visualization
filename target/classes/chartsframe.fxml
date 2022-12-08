@@ -19,10 +19,16 @@
             <Font name="Inconsolata Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="backButton" layoutX="48.0" layoutY="37.0" mnemonicParsing="false" onAction="#handle" text="back to menu" />
+      <Button fx:id="backButton" layoutX="48.0" layoutY="37.0" mnemonicParsing="false" onAction="#handle">
+         <graphic>
+            <Label text="Back to menu" />
+         </graphic></Button>
       <Label layoutX="48.0" layoutY="89.0" text="search student data by id" />
-      <TextField fx:id="idField" layoutX="215.0" layoutY="85.0" prefHeight="26.0" prefWidth="75.0" />
-      <Button fx:id="searchBtn" layoutX="290.0" layoutY="85.0" mnemonicParsing="false" onAction="#handle" text="search" />
+      <TextField fx:id="idField" layoutX="215.0" layoutY="85.0" prefHeight="26.0" prefWidth="110.0" promptText="insert student" />
+      <Button fx:id="searchBtn" layoutX="340.0" layoutY="86.0" mnemonicParsing="false" onAction="#handle">
+         <graphic>
+            <Label text="search" />
+         </graphic></Button>
 
       <LineChart fx:id="attendancesChart" layoutX="47.0" layoutY="138.0" prefHeight="380.0" prefWidth="659.0" stylesheets="@css/linechartstyles.css" title="Attendances per month">
         <xAxis>
@@ -33,13 +39,13 @@
         </yAxis>
       </LineChart>
       <PieChart fx:id="scoresChart" layoutX="785.0" layoutY="139.0" prefHeight="360.0" prefWidth="475.0" stylesheets="@css/piechartstyles.css" title="Scores per subject" />
-      <Label layoutX="150.0" layoutY="545.0" text="total average attendances by subject">
+      <Label layoutX="150.0" layoutY="560.0" text="total average attendances by subject">
          <font>
             <Font name="Inconsolata Bold" size="20.0" />
          </font>
       </Label>
       <Pane fx:id="averageAttendancesContainer" layoutX="35.0" layoutY="595.0" prefHeight="140.0" prefWidth="200.0" />
-      <Label layoutX="963.0" layoutY="545.0" text="total score">
+      <Label layoutX="963.0" layoutY="560.0" text="total score">
          <font>
             <Font name="Inconsolata Bold" size="20.0" />
          </font>

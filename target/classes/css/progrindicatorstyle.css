@@ -24,7 +24,7 @@ StackPane{/*container of circle shape and progress indicator*/
     -fx-stroke: transparent;
     /*-fx-stroke-width: 2;*/
 }
-
+/*----------------indicator coloring */
 .mathProgressIndicator{/*circular bar of the progress indicator*/
     -fx-color: blueviolet;
     -fx-background-radius: 100%;
