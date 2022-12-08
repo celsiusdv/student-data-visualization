@@ -100,6 +100,7 @@ public class TableController implements Initializable {
             public TableCell<StudentScore,Void> call(TableColumn<StudentScore, Void> param) {
                 final TableCell<StudentScore, Void> cell = new TableCell<StudentScore, Void>() {
                     private final Button btn = new Button("delete");{
+                        btn.setStyle("-fx-color: crimson;");
                         btn.setOnAction((ActionEvent event) -> {
                             //get all items from the selected row to get the student id
                             StudentScore studentScore=studentTable.getItems().get(getIndex());

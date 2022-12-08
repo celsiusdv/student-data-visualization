@@ -2,24 +2,30 @@
 /*styling rectangle card that contains labels for amount of students*/
 VBox {/*container of amount of registered student*/
     -fx-background-radius: 10;
-    -fx-background-color: linear-gradient(to top,#58C6C2,#43DAD5);
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35),  28px, 0, 3px, 3px);
+    -fx-background-color: linear-gradient(to top,#004947,#005F5D);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35),  25px, 0, 3px, 3px);
 }
 VBox Label{
+    -fx-text-fill: #C7C2BB;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6px,0,  0px, 2px);
 }
 /*-----------Styling table view-----------------*/
 .table-view {/*the entire tableview*/
     -fx-background-color: transparent;
     -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35),  28px, 0, 3px, 5px);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4),  28px, 0, 3px, 5px);
 }
 /*-----------columns-----------------*/
+.table-view .column-header .label {/* setting title font color*/
+    -fx-text-fill: #C7C2BB;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6px,0,  0px, 2px);
+}
 .table-view .column-header-background .filler {/*empty space in the left side of the columns header*/
     -fx-background-color: transparent;
 }
 .table-view .column-header-background{/*the background of global column headers*/
-    -fx-background-color: linear-gradient(to top, #58C6C2,#43DAD5);
+    -fx-background-color: #004947;
     -fx-background-radius: 7px 7px 0px 0px;
 }
 .table-view .column-header {/*individual column header*/
@@ -29,26 +35,29 @@ VBox Label{
 .table-view .table-cell{/*table cells*/
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
+    -fx-text-fill: #C7C2BB;
 }
-.table-row-cell: hover {/*table cells*/
-    -fx-background-color: #93f9b911;
-    -fx-text-background-color: #7D2078;/*coloring texts inside rows on hover*/
-    -fx-font-size: 14;/*magnifying glass effect*/
+.table-row-cell: hover {/*table cells on hover*/
+    -fx-font-size: 15;/*magnifying glass effect*/
 }
-.table-row-cell: odd{/*table cells*/
-    -fx-background-color: #93f9b911;
+.table-row-cell: selected {/*table selected on click*/
+    -fx-font-size: 15;/*magnifying glass effect*/
+}
+.table-row-cell: odd{
+    -fx-background-color: linear-gradient(to right, #1dbbdd44, #93f9b944);
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
-.table-row-cell: even{/*table cells*/
-    -fx-background-color: #1dbbdd11;
+.table-row-cell: even{
+    -fx-background-color:  #93f9b911;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
 }
 /*-----------buttons inside rows-----------------*/
 .table-view .table-cell Button{/*table cells*/
     -fx-border-color: transparent;
-    -fx-color: #22B8B3;
+    -fx-color: #87009A;
+    -fx-text-fill: #C7C2BB;
 }
 /*------------scroll bar from tableview*/
 .table-view .corner {/*bottom right corner between the scrollbars*/
@@ -68,8 +77,8 @@ VBox Label{
     -fx-padding: 2;
 }
 .table-view .virtual-flow .scroll-bar:vertical .thumb{/*vertical bar*/
-    -fx-background-color:  linear-gradient(to bottom, #1dbbdd44, #93f9b944);
+    -fx-background-color: #1dbbdd44;
 }
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {/*horizontal bar*/
-    -fx-background-color:  linear-gradient(to right, #1dbbdd44, #93f9b944);
+    -fx-background-color:  #1dbbdd44;
 }

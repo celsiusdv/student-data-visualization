@@ -5,34 +5,57 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.OptionsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1100.0" stylesheets="@css/optionsframestyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.OptionsController">
    <children>
       <BorderPane fx:id="mainPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <Label prefHeight="80.0" prefWidth="112.0" text="Title App" BorderPane.alignment="CENTER">
-               <font>
-                  <Font name="Rubik Medium" size="26.0" />
-               </font>
-            </Label>
-         </top>
          <left>
-            <VBox prefHeight="350.0" prefWidth="160.0" spacing="5.0" style="-fx-background-color: #65A89E;" BorderPane.alignment="CENTER">
+            <VBox prefHeight="350.0" prefWidth="160.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="option1" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0" text="Record student">
+                  <Button fx:id="option1" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0">
                      <VBox.margin>
-                        <Insets top="5.0" />
+                        <Insets right="2.0" top="5.0" />
                      </VBox.margin>
+                     <graphic>
+                        <Label text="Registry" />
+                     </graphic>
                   </Button>
-                  <Button fx:id="option2" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0" text="List Students" />
-                  <Button fx:id="option3" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0" text="View Students Data" />
+                  <Button fx:id="option2" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0">
+                     <VBox.margin>
+                        <Insets right="2.0" top="10.0" />
+                     </VBox.margin>
+                     <graphic>
+                        <Label text="Student List" />
+                     </graphic></Button>
+                  <Button fx:id="option3" mnemonicParsing="false" onAction="#handle" prefHeight="45.0" prefWidth="160.0">
+                     <graphic>
+                        <Label text="View student data" />
+                     </graphic>
+                     <VBox.margin>
+                        <Insets right="2.0" top="10.0" />
+                     </VBox.margin></Button>
                </children>
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin></VBox>
          </left>
+         <top>
+            <StackPane prefHeight="80.0" prefWidth="200.0" styleClass="StackPane" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" text="Student data management">
+                     <font>
+                        <Font name="Inconsolata Bold" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+               <BorderPane.margin>
+                  <Insets bottom="15.0" />
+               </BorderPane.margin>
+            </StackPane>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>
