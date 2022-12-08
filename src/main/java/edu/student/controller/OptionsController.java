@@ -29,8 +29,8 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
     public OptionsController(){}
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //this.showRecordFrame();
-        this.showTableFrame();
+        this.showRecordFrame();
+        //this.showTableFrame();
     }
     @Override
     public void handle(ActionEvent event) {

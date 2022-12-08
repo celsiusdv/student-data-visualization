@@ -56,7 +56,7 @@ VBox Label{
 /*-----------buttons inside rows-----------------*/
 .table-view .table-cell Button{/*table cells*/
     -fx-border-color: transparent;
-    -fx-color: #87009A;
+    -fx-color: #4C1D38;
     -fx-text-fill: #C7C2BB;
 }
 /*------------scroll bar from tableview*/
