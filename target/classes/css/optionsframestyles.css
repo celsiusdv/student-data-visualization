@@ -26,15 +26,19 @@ VBox Button: hover{
 	-fx-effect: innershadow(gaussian, rgba(0,0,0,0.5),  18px, 0, 3px, 8px) ;
 	-fx-translate-y: 1;
 }
+Button: pressed{
+	-fx-opacity:0.7;
+    -fx-border-width: 0 0 1px 0;
+	-fx-border-color: aqua;
+	-fx-border-style: solid;
+	-fx-border-radius: 8px;
+}
 VBox Button: focused{
-    -fx-opacity:0.7;
     -fx-border-width: 0 0 1px 0;
     -fx-border-color: aqua;
     -fx-border-style: solid;
     -fx-border-radius: 5px;
-    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.5),  18px, 0, 3px, 8px) ;
 }
-
 VBox Button Label{
     -fx-font-size: 12pt;
     -fx-text-fill: #C7C2BB;
