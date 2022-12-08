@@ -227,4 +227,30 @@ public class StudentDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
+
+    public void findStudentById(Student student){
+        Connection connection=null;
+        PreparedStatement preparedStatement=null;
+        String find="SELECT first_name, last_name FROM students WHERE student_id=?";
+        ResultSet resultSet=null;
+        try{
+            connection=super.getConnection();
+            preparedStatement=connection.prepareStatement(find);
+            preparedStatement.setInt(1,student.getStudentId());
+            resultSet=preparedStatement.executeQuery();
+            if(resultSet.next()){
+                student.setFirstName(resultSet.getString("first_name"));
+                student.setLastName(resultSet.getString("last_name"));
+            }
+        }catch (SQLException e){
+            System.out.println("error in method findStudentById from StudentDAO.class");
+            e.printStackTrace();
+        }finally {
+            try {
+                connection.close();
+                preparedStatement.close();
+                resultSet.close();
+            } catch (SQLException e) {throw new RuntimeException(e);}
+        }
+    }
 }

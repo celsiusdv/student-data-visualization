@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="770.0" prefWidth="1270.0" stylesheets="@css/chartsframestyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
    <children>
-      <Label layoutX="320.0" layoutY="39.0" text="subjects attendances per month">
+      <Label layoutX="400.0" layoutY="39.0" text="Data from:">
          <font>
             <Font name="Inconsolata Bold" size="20.0" />
          </font>
@@ -51,6 +51,11 @@
          </font>
       </Label>
       <StackPane fx:id="totalScoreContainer" layoutX="833.0" layoutY="595.0" prefHeight="88.0" prefWidth="357.0" />
+      <Label fx:id="studentNameLabel" layoutX="510.0" layoutY="41.0">
+         <font>
+            <Font name="Inconsolata Bold" size="20.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>

@@ -89,6 +89,7 @@ public class StudentService {
         }else System.out.println("failed to update student credentials");
     }
 
+//---------service to delete student name in TableController
     public boolean deleteStudent(StudentScore studentScore){
         this.studentFromTable =studentScore;
         student.setStudentId(this.studentFromTable.getStudentId());
@@ -97,5 +98,13 @@ public class StudentService {
             System.out.println("name: "+this.studentFromTable.getFirstName()+" id: "+this.studentFromTable.getStudentId());
             return true;
         }else return false;
+    }
+
+//---------service to find student and show name in ChartsController
+    public String findStudent(int id){
+        student.setStudentId(id);
+        studentDAO.findStudentById(student);
+
+        return student.getFirstName()+" "+student.getLastName();
     }
 }

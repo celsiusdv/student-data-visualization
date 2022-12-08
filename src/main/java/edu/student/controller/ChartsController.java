@@ -1,6 +1,7 @@
 package edu.student.controller;
 
 import edu.student.services.AttendanceService;
+import edu.student.services.StudentService;
 import edu.student.services.SubjectService;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -15,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -29,6 +31,8 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     @FXML private Button backButton;
     @FXML private Button searchBtn;
     @FXML private TextField idField;
+    @FXML private Label studentNameLabel;
+    @FXML private StudentService studentService;
 
     @FXML private LineChart<String,Number> attendancesChart;//container of months and attendances values
     @FXML private CategoryAxis subjectCategoryAxis;//horizontal axis for months names
@@ -70,8 +74,14 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
 
         setAverageAttendancesIndicator();
         setAverageScoreBar();
-    }
 
+        studentService=new StudentService();
+    }
+//--------------------------show student name
+    public void showName(int id){
+        studentNameLabel.setText(
+                studentService.findStudent(id));
+    }
 //--------------------------creating line chart for attendances
     public void setAttendancesChart(){
         mathSeries = new XYChart.Series();
@@ -193,6 +203,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
                     int id= Integer.parseInt(idField.getText());
                     updateChartAttendancesValues(id);
                     updateScoresChart(id);
+                    showName(id);
                 }else System.out.println("the field for the id is empty");
             }catch (NumberFormatException e){
                 System.out.println("wrong input, only numbers are allowed");
