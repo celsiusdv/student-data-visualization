@@ -76,6 +76,6 @@
 }
 
 .separator .line {
-    -fx-border-color: rgb(76, 29, 56) ;
+    -fx-border-color: #4C1D38 ;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 14px,0, 0, -3px);
 }

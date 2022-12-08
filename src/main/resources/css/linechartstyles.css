@@ -1,0 +1,41 @@
+/*****************************************************/
+/*-----------------------styling line chart***********/
+/*****************************************************/
+.chart {/*container*/
+    -fx-background-color: #252d33;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4),  20px, 0, 3px, 8px);
+    -fx-background-radius: 8;
+}
+.chart-plot-background{/*inner panel for lines*/
+    -fx-background-color:transparent;
+}
+
+/* lines */
+.chart-series-line {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 20px,0, 1px, 1px);
+    -fx-stroke-width: 8;
+}
+.chart-series-line: hover {/*setting hover, and width for all lines*/
+    -fx-stroke-width: 15;/* 6;*/
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 20px,0, 1px, 1px);
+}
+.default-color0.chart-series-line { -fx-stroke: blueviolet; }/*setting custom color in the line*/
+.default-color1.chart-series-line { -fx-stroke: crimson; }
+.default-color0.chart-line-symbol { -fx-background-color: blueviolet, #252d33; }/*setting color in the dot corner line and dot legends*/
+.default-color1.chart-line-symbol { -fx-background-color: crimson, #252d33; }
+.default-color2.chart-line-symbol { -fx-background-color: #57B757, #252d33; }
+.default-color3.chart-line-symbol { -fx-background-color: #41A9C9, #252d33; }
+.default-color4.chart-line-symbol { -fx-background-color: #4258C9, #252d33; }
+
+/*legend, axis, and ticks*/
+.axis {/*color and styles for horizontal category names and ticks (months in this case)*/
+    -fx-font-size: 14px;
+    -fx-tick-label-fill: #ADADAD;
+    -fx-tick-length: 20;
+    -fx-minor-tick-length: 10;
+}
+.chart-legend {/*container/box from legend that contains the lines names*/
+   -fx-background-color:  transparent;
+}
+.chart-vertical-grid-lines {-fx-stroke: #404046;}
+.chart-horizontal-grid-lines {-fx-stroke: #404046;}
