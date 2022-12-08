@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1270.0" stylesheets="@css/chartsframestyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
+<AnchorPane prefHeight="770.0" prefWidth="1270.0" stylesheets="@css/chartsframestyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ChartsController">
    <children>
       <Label layoutX="320.0" layoutY="39.0" text="subjects attendances per month">
          <font>
@@ -24,7 +24,7 @@
       <TextField fx:id="idField" layoutX="215.0" layoutY="85.0" prefHeight="26.0" prefWidth="75.0" />
       <Button fx:id="searchBtn" layoutX="290.0" layoutY="85.0" mnemonicParsing="false" onAction="#handle" text="search" />
 
-      <LineChart fx:id="attendancesChart" layoutX="20.0" layoutY="138.0" prefHeight="352.0" prefWidth="659.0" stylesheets="@css/linechartstyles.css">
+      <LineChart fx:id="attendancesChart" layoutX="47.0" layoutY="138.0" prefHeight="380.0" prefWidth="659.0" stylesheets="@css/linechartstyles.css" title="Attendances per month">
         <xAxis>
           <CategoryAxis fx:id="subjectCategoryAxis" side="BOTTOM" />
         </xAxis>
@@ -32,19 +32,19 @@
           <NumberAxis fx:id="subjectAttendanceAxis" side="LEFT" />
         </yAxis>
       </LineChart>
-      <PieChart fx:id="scoresChart" layoutX="767.0" layoutY="139.0" prefHeight="341.0" prefWidth="475.0" />
-      <Label layoutX="150.0" layoutY="517.0" text="total average attendances by subject">
+      <PieChart fx:id="scoresChart" layoutX="785.0" layoutY="139.0" prefHeight="360.0" prefWidth="475.0" stylesheets="@css/piechartstyles.css" title="Scores per subject" />
+      <Label layoutX="150.0" layoutY="545.0" text="total average attendances by subject">
          <font>
             <Font name="Inconsolata Bold" size="20.0" />
          </font>
       </Label>
-      <Pane fx:id="averageAttendancesContainer" layoutX="50.0" layoutY="564.0" prefHeight="140.0" prefWidth="200.0" />
-      <Label layoutX="963.0" layoutY="517.0" text="total score">
+      <Pane fx:id="averageAttendancesContainer" layoutX="35.0" layoutY="595.0" prefHeight="140.0" prefWidth="200.0" />
+      <Label layoutX="963.0" layoutY="545.0" text="total score">
          <font>
             <Font name="Inconsolata Bold" size="20.0" />
          </font>
       </Label>
-      <StackPane fx:id="totalScoreContainer" layoutX="833.0" layoutY="548.0" prefHeight="88.0" prefWidth="357.0" />
+      <StackPane fx:id="totalScoreContainer" layoutX="833.0" layoutY="595.0" prefHeight="88.0" prefWidth="357.0" />
 
    </children>
 </AnchorPane>

@@ -11,7 +11,7 @@
 
 <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="21.0" stylesheets="@css/progrindicatorstyle.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.student.controller.ProgressIndicatorController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0" styleClass="mathVBox">
+      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0">
          <children>
             <Label contentDisplay="CENTER" text="Math" VBox.vgrow="NEVER">
                <font>
@@ -21,12 +21,15 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: lightblue;" styleClass="mathStackPane">
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathOuterCircle" />
+                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="outerCircle" />
                   <ProgressIndicator fx:id="mathProgressIndicator" progress="0.3" radius="35.0" styleClass="mathProgressIndicator" />
-                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathInnerCircle" />
-                  <Label fx:id="mathProgress" text="0" />
+                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="innerCircle" />
+                  <Label fx:id="mathProgress" text="0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
                </children>
             </StackPane>
          </children>
@@ -34,7 +37,7 @@
             <Insets />
          </HBox.margin>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0" styleClass="mathVBox">
+      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0">
          <children>
             <Label contentDisplay="CENTER" text="English" VBox.vgrow="NEVER">
                <font>
@@ -44,17 +47,20 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: lightblue;" styleClass="mathStackPane">
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathOuterCircle" />
-                  <ProgressIndicator fx:id="englishProgressIndicator" progress="0.3" radius="35.0" styleClass="mathProgressIndicator" />
-                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathInnerCircle" />
-                  <Label fx:id="englishProgress" text="0" />
+                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="outerCircle" />
+                  <ProgressIndicator fx:id="englishProgressIndicator" progress="0.3" radius="35.0" styleClass="engProgressIndicator" />
+                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="innerCircle" />
+                  <Label fx:id="englishProgress" text="0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
                </children>
             </StackPane>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0" styleClass="mathVBox">
+      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0">
          <children>
             <Label contentDisplay="CENTER" text="Programming" VBox.vgrow="NEVER">
                <font>
@@ -64,17 +70,20 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: lightblue;" styleClass="mathStackPane">
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathOuterCircle" />
-                  <ProgressIndicator fx:id="progProgressIndicator" progress="0.3" radius="35.0" styleClass="mathProgressIndicator" />
-                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathInnerCircle" />
-                  <Label fx:id="progProgress" text="0" />
+                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="outerCircle" />
+                  <ProgressIndicator fx:id="progProgressIndicator" progress="0.3" radius="35.0" styleClass="progProgressIndicator" />
+                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="innerCircle" />
+                  <Label fx:id="progProgress" text="0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
                </children>
             </StackPane>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0" styleClass="mathVBox">
+      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0">
          <children>
             <Label contentDisplay="CENTER" text="Physics" VBox.vgrow="NEVER">
                <font>
@@ -84,17 +93,20 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: lightblue;" styleClass="mathStackPane">
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathOuterCircle" />
-                  <ProgressIndicator fx:id="physicsProgressIndicator" progress="0.3" radius="35.0" styleClass="mathProgressIndicator" />
-                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathInnerCircle" />
-                  <Label fx:id="physicsProgress" text="0" />
+                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="outerCircle" />
+                  <ProgressIndicator fx:id="physicsProgressIndicator" progress="0.3" radius="35.0" styleClass="physProgressIndicator" />
+                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="innerCircle" />
+                  <Label fx:id="physicsProgress" text="0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
                </children>
             </StackPane>
          </children>
       </VBox>
-      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0" styleClass="mathVBox">
+      <VBox alignment="TOP_CENTER" prefHeight="155.0" prefWidth="120.0" spacing="5.0">
          <children>
             <Label contentDisplay="CENTER" text="Economics" VBox.vgrow="NEVER">
                <font>
@@ -104,12 +116,15 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </Label>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: lightblue;" styleClass="mathStackPane">
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathOuterCircle" />
-                  <ProgressIndicator fx:id="econProgressIndicator" progress="0.3" radius="35.0" styleClass="mathProgressIndicator" />
-                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="mathInnerCircle" />
-                  <Label fx:id="econProgress" text="0" />
+                  <Circle fill="#a2fadf" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="outerCircle" />
+                  <ProgressIndicator fx:id="econProgressIndicator" progress="0.3" radius="35.0" styleClass="econProgressIndicator" />
+                  <Circle fill="#d5e7b3" radius="30.0" stroke="BLACK" strokeType="INSIDE" styleClass="innerCircle" />
+                  <Label fx:id="econProgress" text="0">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font></Label>
                </children>
             </StackPane>
          </children>

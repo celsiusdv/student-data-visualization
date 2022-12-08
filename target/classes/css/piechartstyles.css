@@ -1,0 +1,45 @@
+/*chart container*/
+.chart {
+    -fx-background-color: #252d33;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.4),  20px, 0, 3px, 3px);
+    -fx-background-radius: 8;
+}
+
+
+/*slices*/
+.default-color0.chart-pie {
+    -fx-pie-color: blueviolet;
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 15px,0, 0px, 0px);
+}
+.default-color1.chart-pie {
+    -fx-pie-color: crimson;
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 15px,0, 0px, 0px);
+}
+.default-color2.chart-pie {
+    -fx-pie-color: #57B757;
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 15px,0, 0px, 0px);
+}
+.default-color3.chart-pie {
+    -fx-pie-color: #41A9C9;
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 15px,0, 0px, 0px);
+}
+.default-color4.chart-pie {
+    -fx-pie-color: #4258C9;
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 15px,0, 0px, 0px);
+}
+
+
+
+/*labels and legends*/
+.chart-pie-label-line {
+    -fx-stroke: #ADADAD;
+    -fx-fill: #252d33
+}
+.chart-pie-label {
+    -fx-fill: #ADADAD;
+    -fx-font-size: 1em;
+}
+.chart-legend {
+   -fx-background-color: transparent;
+   -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20px,0, 5px, 5px);
+}

@@ -3,7 +3,7 @@
 /*****************************************************/
 .chart {/*container*/
     -fx-background-color: #252d33;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4),  20px, 0, 3px, 8px);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4),  20px, 0, 3px, 3px);
     -fx-background-radius: 8;
 }
 .chart-plot-background{/*inner panel for lines*/
