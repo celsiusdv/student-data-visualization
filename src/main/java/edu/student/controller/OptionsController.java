@@ -30,7 +30,6 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.showRecordFrame();
-        //this.showTableFrame();
     }
     @Override
     public void handle(ActionEvent event) {
@@ -61,6 +60,7 @@ public class OptionsController implements EventHandler<ActionEvent>, Initializab
             throw new RuntimeException(e);
         }
     }
+    /*this method is also called in the table controller in the show data column*/
     public void showChartsFrame(ActionEvent event,String studentId){
         try {
             Stage stage=(Stage)((Node)event.getSource()).getScene().getWindow();

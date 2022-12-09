@@ -10,11 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
-//task 2
-public class SubjectDAO extends Connector {
-///////////////////////////////////////////////////////////////////////////
-//----------------------------retrieve scores from database--------------
-///////////////////////////////////////////////////////////////////////////
+
+public class SubjectDAO extends Connector{
+//----------------------------retrieve scores from database------------
     public Set<Subject> retrieveScores(Subject subject){
         Set<Subject> subjectScores=new HashSet<>();
 
@@ -44,9 +42,8 @@ public class SubjectDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-/////////////////////////////////////////////////////////////////////////////
+
 ////----------------------------retrieve scores from database--------------
-/////////////////////////////////////////////////////////////////////////////
     public Subject retrieveScoresById(Subject subject){
         Subject subjectObj=new Subject();
         Connection connection=null;
@@ -80,9 +77,7 @@ public class SubjectDAO extends Connector {
         }
     }
 
-/////////////////////////////////////////////////////////////////////////////
 //-----------------insert/update scores from record frame input--------------
-/////////////////////////////////////////////////////////////////////////////
     public boolean isEveryScoreUpdated(Subject subject, Student student){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -112,9 +107,7 @@ public class SubjectDAO extends Connector {
         }
     }
 
-///////////////////////////////////////////////////////////////////////////////
 ////---------------------update  to database from table input------------------
-///////////////////////////////////////////////////////////////////////////////
     public boolean isScoreFromTableUpdated(Subject subject){
         Connection connection=null;
         PreparedStatement preparedStatement=null;

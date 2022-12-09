@@ -31,7 +31,7 @@ public class StudentService {
         }
         return scoreList;
     }
-
+//--------service to create new student in RecordController
     public String createStudent(int studentId, String studentName, String studentLastName){
         String warn=null;
         if(studentDAO.isStudentAlreadyCreated(studentId)==false){
@@ -76,7 +76,7 @@ public class StudentService {
         }else System.out.println("failed to update student credentials");
     }
 
-//---------service to update student name in TableController
+//---------service to update student last name in TableController
     public void updateStudentLastName(CellEditEvent<StudentScore, String> event){
         studentFromTable =event.getTableView().getSelectionModel().getSelectedItem();
         student.setStudentId(studentFromTable.getStudentId());

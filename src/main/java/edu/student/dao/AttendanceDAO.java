@@ -9,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AttendanceDAO extends Connector {
-////////////////////////////////////////////////////////////////////////////////
 //------------------retrieve math attendances p/ month from database-----------
-///////////////////////////////////////////////////////////////////////////////
     public int[] retrieveMathAttendances(Attendance attendance,String[] months){
         int[] mathAttendances=new int[9];
         Connection connection=null;
@@ -44,9 +42,8 @@ public class AttendanceDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 //-------------------------retrieve english attendances p/ month from database-----------
-/////////////////////////////////////////////////////////////////////////////////////////
     public int[] retrieveEnglishAttendances(Attendance attendance,String[] months){
         int[] englishAttendances=new int[9];
         Connection connection=null;
@@ -78,9 +75,8 @@ public class AttendanceDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 //-------------------------retrieve programming attendances p/ month from database-----------
-/////////////////////////////////////////////////////////////////////////////////////////
     public int[] retrieveProgrammingAttendances(Attendance attendance,String[] months){
         int[] progAttendances=new int[9];
         Connection connection=null;
@@ -112,9 +108,8 @@ public class AttendanceDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-/////////////////////////////////////////////////////////////////////////////////////////
+
 //-------------------------retrieve physics attendances p/ month from database-----------
-/////////////////////////////////////////////////////////////////////////////////////////
     public int[] retrievePhysicsAttendances(Attendance attendance,String[] months){
         int[] physicsAttendances=new int[9];
         Connection connection=null;
@@ -146,9 +141,8 @@ public class AttendanceDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-///////////////////////////////////////////////////////////////////////////////////////////
+
 //-------------------------retrieve economics attendances p/ month from database-----------
-/////////////////////////////////////////////////////////////////////////////////////////
     public int[] retrieveEconomicsAttendances(Attendance attendance,String[] months){
         int[] economicsAttendances=new int[9];
         Connection connection=null;
@@ -181,9 +175,7 @@ public class AttendanceDAO extends Connector {
         }
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////
 //------------------------add attendanes for visualization purposes-----------
-///////////////////////////////////////////////////////////////////////////////////////////
     public boolean areAttendancesInserted(Attendance attendance){
         Connection connection=null;
         PreparedStatement preparedStatement=null;

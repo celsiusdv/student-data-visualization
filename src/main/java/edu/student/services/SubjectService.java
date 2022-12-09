@@ -21,7 +21,7 @@ public class SubjectService {
         studentScore=new StudentScore();
         subjectDAO=new SubjectDAO();
     }
-//---insert updates from student record frame
+//---insert updates from student RecordControllerClass
     public String updateScores(int mathScore, int englishScore, int programmingScore,
                              int physicsScore, int economicsScore, int studentId ){
         String warn=null;

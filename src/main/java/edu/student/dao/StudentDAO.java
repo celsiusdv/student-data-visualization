@@ -19,9 +19,7 @@ import java.util.Set;
  * create resultset if read is necessary (executeQuery()for resulset)
  * */
 public class StudentDAO extends Connector {
-///////////////////////////////////////////////////////////////////////////
 //----------------------------retrieve students from database--------------
-///////////////////////////////////////////////////////////////////////////
     public Set<Student> retrieveStudents(Student student){
         Set<Student> students=new HashSet<>();
         Connection connection=null;
@@ -49,9 +47,8 @@ public class StudentDAO extends Connector {
         }
         return students;
     }
-/////////////////////////////////////////////////////////////////////////////
+
 //----retrieve students and subject scores from database with a join query---
-/////////////////////////////////////////////////////////////////////////////
     public Set<StudentScore> retrieveStudentsAndScores(StudentScore studentScore){
         Set<StudentScore> scores=new HashSet<>();
         Connection connection=null;
@@ -85,9 +82,8 @@ public class StudentDAO extends Connector {
         }
         return scores;
     }
-////////////////////////////////////////////////////////////////////////////////////
+
 //-----------------check if student already exist in database before insert---------
-////////////////////////////////////////////////////////////////////////////////////
     public boolean isStudentAlreadyCreated(int student_id){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -117,9 +113,8 @@ public class StudentDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-/////////////////////////////////////////////////////////////////////////////
+
 //-----------------------insert student to database------------------
-/////////////////////////////////////////////////////////////////////////////
     public boolean isStudentCreated(Student student){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -144,9 +139,8 @@ public class StudentDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-/////////////////////////////////////////////////////////////////////////////
-//-----------------------update student id-----------------------------------
-/////////////////////////////////////////////////////////////////////////////
+
+//-----------------------update student id----------------------------------
     public boolean isStudentIdUpdated(Student student, Integer student_id){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -169,9 +163,8 @@ public class StudentDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-/////////////////////////////////////////////////////////////////////////////
-//-----------------------update student credentials--------------------------
-/////////////////////////////////////////////////////////////////////////////
+
+//-----------------------update student credentials-------------------------
     public boolean isStudentUpdated(Student student){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -203,9 +196,8 @@ public class StudentDAO extends Connector {
             } catch (SQLException e) {throw new RuntimeException(e);}
         }
     }
-/////////////////////////////////////////////////////////////////////////////
-//-----------------------delete student ------------------------------------
-/////////////////////////////////////////////////////////////////////////////
+
+//-----------------------delete student -----------------------------------
     public boolean deleteStudent(Student student){
         Connection connection=null;
         PreparedStatement preparedStatement=null;
@@ -228,6 +220,7 @@ public class StudentDAO extends Connector {
         }
     }
 
+//-----------------------find student student -----------------------------------
     public void findStudentById(Student student){
         Connection connection=null;
         PreparedStatement preparedStatement=null;

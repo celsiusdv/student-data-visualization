@@ -151,8 +151,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
     public void setValueOnSlice(){
         for(int i=0; i<scoresData.size(); i++){
             scoresData.get(i).nameProperty().bind(
-                    Bindings.concat(
-                            scoresData.get(i).getName()," ",scoresData.get(i).pieValueProperty(),""));
+                    Bindings.concat(scoresData.get(i).getName()," ",scoresData.get(i).pieValueProperty(),""));
         }
     }
 
@@ -192,6 +191,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
         }
         progressBarController.setScoreRange(scoreEarned);
     }
+
     @Override
     public void handle(ActionEvent event) {
         if(backButton.equals(event.getSource())){
@@ -210,6 +210,7 @@ public class ChartsController implements Initializable, EventHandler<ActionEvent
             }
         }
     }
+
     public void showMainMenuFrame(ActionEvent event){
         try {
             Stage stage= (Stage) ((Node)event.getSource()).getScene().getWindow();

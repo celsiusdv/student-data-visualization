@@ -12,13 +12,13 @@ public class AttendanceService {
     public AttendanceService(){
         months= new String[]{"'march'", "'april'", "'may'",
                              "'june'", "'july'", "'august'",
-                             "'september'", "'october'", "'november'"};//this array will be iterated on AttendanceDAO class
+                             "'september'", "'october'", "'november'"};//this array will be iterated in AttendanceDAO class
         attendance= new Attendance();
         attendanceDAO=new AttendanceDAO();
     }
 
     public int[] showMathAttendances(int student_attendance_id){
-        int[] mathAttendances=new int[9];
+        int[] mathAttendances=new int[9];//the values from this array is used in the linechart
         if(student_attendance_id > 0){
             attendance.setStudentAttendanceId(student_attendance_id);
             mathAttendances=attendanceDAO.retrieveMathAttendances(attendance,months);
@@ -62,6 +62,7 @@ public class AttendanceService {
         return economicsAttendances;
     }
 
+    /*this method is used to create random attendances after a new student is created in RecordController.class*/
     public String createAttendancesSample(int student_attendance_id){
         int samplesAdded=0;
         Date date=null;
